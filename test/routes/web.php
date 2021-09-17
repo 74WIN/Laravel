@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FrontController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', [AboutController::class, 'index']);
+Route::get('home', [FrontController::class, 'home'])->name('home');
+Route::get('products', [FrontController::class, 'products'])->name('products.index');
+Route::get('about-us', [FrontController::class, 'aboutUs'])->name('about.us');
