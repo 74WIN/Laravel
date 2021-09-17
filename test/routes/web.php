@@ -17,6 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', [FrontController::class, 'home'])->name('home');
-Route::get('products', [FrontController::class, 'products'])->name('products.index');
-Route::get('about-us', [FrontController::class, 'aboutUs'])->name('about.us');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/register', function () {
+    return view('register');
+});
