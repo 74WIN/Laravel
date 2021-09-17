@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+use View;
+use App\Models\Navbar;
 
 class AppServiceProvider extends ServiceProvider
 {
