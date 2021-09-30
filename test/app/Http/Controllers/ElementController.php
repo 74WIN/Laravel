@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class seasons extends Controller
+class ElementController extends Controller
 {
     //
 }

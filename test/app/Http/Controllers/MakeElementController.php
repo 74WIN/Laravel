@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class vtubers extends Controller
+class MakeElementController extends Controller
 {
     //
 }
