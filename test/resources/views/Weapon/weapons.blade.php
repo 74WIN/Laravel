@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>element</title>
+    <title>weapons</title>
 
     <!-- Fonts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
@@ -109,7 +110,7 @@
                     </svg>
 
                     <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                        Rate
+                        CMGT
                     </a>
 
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
@@ -117,7 +118,7 @@
                     </svg>
 
                     <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                        Contact
+                        HINT
                     </a>
                 </div>
             </div>
