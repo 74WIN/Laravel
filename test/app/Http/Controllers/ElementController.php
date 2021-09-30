@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class ElementController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('/Element/elements');
+    }
 }

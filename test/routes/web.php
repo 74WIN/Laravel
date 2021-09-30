@@ -17,27 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/weapons', [App\Http\Controllers\WeaponController::class, 'index'])->name('weapons');
-Route::get('/elements', [App\Http\Controllers\ElementController::class, 'index'])->name('elements');
+Route::get('/Element/elements', [App\Http\Controllers\ElementController::class, 'index'])->name('elements');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/make-elements', [App\Http\Controllers\MakeElementController::class, 'index'])->name('make-weapons');
 Route::get('/make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'index'])->name('make-elements');
