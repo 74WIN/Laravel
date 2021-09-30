@@ -8,6 +8,6 @@ class MakeElementController extends Controller
 {
     public function index()
     {
-        return view('/Element/make-element');
+        return view('/Element/make-elements');
     }
 }

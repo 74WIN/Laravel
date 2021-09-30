@@ -8,6 +8,6 @@ class MakeWeaponController extends Controller
 {
     public function index()
     {
-        return view('/Weapon/make-element');
+        return view('/Weapon/make-weapons');
     }
 }
