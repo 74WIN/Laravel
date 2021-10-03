@@ -67,20 +67,20 @@
     <div class="container">
         <form method="post" action="" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="name" class="form-label">Weapon name</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="">
+                <label for="weaponname" class="form-label">Weapon name</label>
+                <input type="text" name="weaponname" class="form-control" id="weaponname" placeholder="">
             </div>
             <div class="mb-3">
-                <label for="type" class="form-label">Type weapon</label>
-                <input type="text" name="type" class="form-control" id="type" placeholder="sword?">
+                <label for="weapontype" class="form-label">Type weapon</label>
+                <input type="text" name="weapontype" class="form-control" id="weapontype" placeholder="sword?">
             </div>
             <div class="mb-3">
-                <label for="img" class="form-label">Image</label>
-                <input class="form-control" name="img" type="image" id="img">
+                <label for="weaponimg" class="form-label">Image</label>
+                <input class="form-control" name="weaponimg" type="image" id="weaponimg">
             </div>
             <div class="mb-3">
-                <label for="lore" class="form-label">Lore</label>
-                <textarea class="form-control" name="lore" id="lore" rows="3"></textarea>
+                <label for="weaponlore" class="form-label">Lore</label>
+                <textarea class="form-control" name="weaponlore" id="weaponlore" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class element extends Model
 {
+    protected $fillable = [
+        'elementname',
+        'elementtype',
+        'elementimg',
+        'elementlore',
+    ];
     use HasFactory;
 }

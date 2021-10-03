@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class weapon extends Model
 {
+    protected $fillable = [
+        'weaponname',
+        'weapontype',
+        'weaponimg',
+        'weaponlore',
+    ];
     use HasFactory;
 }

@@ -15,10 +15,10 @@ class CreateElementTable extends Migration
     {
         Schema::create('element', function (Blueprint $table) {
             $table->id();
-            $table->string('img');
-            $table->string('name');
-            $table->string('type');
-            $table->longText('lore');
+            $table->string('elementimg');
+            $table->string('elementname');
+            $table->string('elementtype');
+            $table->longText('elementlore');
             $table->timestamps();
         });
     }
