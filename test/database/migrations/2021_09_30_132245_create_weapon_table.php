@@ -13,7 +13,7 @@ class CreateWeaponTable extends Migration
      */
     public function up()
     {
-        Schema::create('weapon', function (Blueprint $table) {
+        Schema::create('weapons', function (Blueprint $table) {
             $table->id();
             $table->string('weaponimg');
             $table->string('weaponname');
@@ -30,6 +30,6 @@ class CreateWeaponTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weapon');
+        Schema::dropIfExists('weapons');
     }
 }

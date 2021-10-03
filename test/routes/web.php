@@ -23,9 +23,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
-Route::post('/elements', [App\Http\Controllers\ElementController::class, 'store'])->name('elements');
-Route::get('/make-elements', [App\Http\Controllers\MakeElementController::class, 'index'])->name('make-elements');
+Route::get('/elements', [App\Http\Controllers\ElementController::class, 'store'])->name('elements');
+Route::post('/make-elements', [App\Http\Controllers\MakeElementController::class, 'index'])->name('make-elements');
 
-Route::post('/weapons', [App\Http\Controllers\MakeWeaponController::class, 'store'])->name('weapons');
-Route::get('/make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'index'])->name('make-weapons');
+Route::get('/weapons', [App\Http\Controllers\MakeWeaponController::class, 'store'])->name('weapon');
+Route::post('/make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'index'])->name('make-weapons');
 

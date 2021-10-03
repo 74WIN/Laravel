@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\weapon;
-use Illuminate\Http\Request;use App\Post;class MakeWeaponController extends Controller
+class MakeWeaponController extends Controller
 {
     /**
      * Display a listing of the resource.

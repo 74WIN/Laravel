@@ -11,7 +11,7 @@ class weapon extends Model
         'weaponname',
         'weapontype',
         'weaponimg',
-        'weaponlore',
+        'weaponlore'
     ];
     use HasFactory;
 }

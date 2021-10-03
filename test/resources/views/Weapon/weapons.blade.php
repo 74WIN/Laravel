@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>weapons</title>
+    <title>weapon</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -65,7 +65,7 @@
     @endif
         <h1>Make your weapon</h1><br>
     <div class="container">
-        <form method="post" action= >
+        <form name="weapons" action="">
             <div class="mb-3">
                 <label for="weaponname" class="form-label">Weapon name</label>
                 <input type="text" class="form-control" id="weaponname" placeholder="">
