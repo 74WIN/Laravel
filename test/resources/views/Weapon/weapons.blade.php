@@ -65,23 +65,22 @@
     @endif
         <h1>Make your weapon</h1><br>
     <div class="container">
-
-        <form>
+        <form method="post" action= >
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Weapon name</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                <label for="weaponname" class="form-label">Weapon name</label>
+                <input type="text" class="form-control" id="weaponname" placeholder="">
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Type weapon</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="sword?">
+                <label for="typeweapon" class="form-label">Type weapon</label>
+                <input type="text" class="form-control" id="typeweapon" placeholder="sword?">
             </div>
             <div class="mb-3">
-                <label for="formFile" class="form-label">Image</label>
-                <input class="form-control" type="file" id="formFile">
+                <label for="image" class="form-label">Image</label>
+                <input class="form-control" type="file" id="image">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="lore" class="form-label">Lore</label>
+                <textarea class="form-control" id="lore" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
