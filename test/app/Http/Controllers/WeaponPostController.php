@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\weapon;
-use Illuminate\Http\Request;use App\Post;class MakeWeaponController extends Controller
+use Illuminate\Http\Request;use App\Post;class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,7 +32,7 @@ use Illuminate\Http\Request;use App\Post;class MakeWeaponController extends Cont
      */
     public function store(Request $request)
     {
-        $post = new weapon;
+        $post = new Post;
 
         $post->weaponname = $request->weaponname;
         $post->weapontype = $request->weapontype;
@@ -42,7 +41,7 @@ use Illuminate\Http\Request;use App\Post;class MakeWeaponController extends Cont
 
         $post->save();
 
-        return redirect('/Weapon/make-weapons')->with('status', 'Your weapon has been created!');
+        return redirect('/Weapon/weapons')->with('status', 'Blog Post Form Data Has Been inserted');
     }
 
     /**
