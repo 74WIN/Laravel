@@ -65,25 +65,7 @@
     @endif
         <h1>Make your weapon</h1><br>
     <div class="container">
-        <form method="post" action= >
-            <div class="mb-3">
-                <label for="weaponname" class="form-label">Weapon name</label>
-                <input type="text" class="form-control" id="weaponname" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="typeweapon" class="form-label">Type weapon</label>
-                <input type="text" class="form-control" id="typeweapon" placeholder="sword?">
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
-                <input class="form-control" type="file" id="image">
-            </div>
-            <div class="mb-3">
-                <label for="lore" class="form-label">Lore</label>
-                <textarea class="form-control" id="lore" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        this works i guess
     </div>
 </div>
 </body>
