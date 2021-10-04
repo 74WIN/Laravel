@@ -32,6 +32,9 @@
         h1{
             text-align: center;
         }
+        .push-top {
+            margin-top: 50px;
+        }
         .form-control {
             display: block;
             width: 100%;
@@ -64,9 +67,7 @@
         </div>
     @endif
         <h1>Make your weapon</h1><br>
-    <div class="container">
-        this works i guess
-    </div>
+
 </div>
 </body>
 </html>

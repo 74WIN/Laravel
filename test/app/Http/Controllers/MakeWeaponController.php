@@ -13,7 +13,8 @@ class MakeWeaponController extends Controller
      */
     public function index()
     {
-        return view('/Weapon/make-weapons');
+        $weapon = Weapon::all();
+        return view('Weapon/make-weapons', compact('weapon'));
     }
 
     /**
@@ -23,7 +24,7 @@ class MakeWeaponController extends Controller
      */
     public function create()
     {
-        //
+        return view('Weapon/create-weapons');
     }
 
     /**
@@ -34,14 +35,23 @@ class MakeWeaponController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Weapon;
-        $post->weaponname = $request->weaponname;
-        $post->weapontype = $request->weapontype;
-        $post->weapontype = $request->weaponimg;
-        $post->weapontype = $request->weaponlore;
-        $post->save();
+        $storeData = $request->validate([
+            'weaponname',
+            'weawpontype',
+            'weaponimg',
+            'weaponlore'
+        ]);
+        $weapon = Weapon::create($storeData);
 
-        return redirect('/Weapon/make-weapons')->with('status', 'Your weapon has been created!');
+        return redirect('/Weapon/make-weapons')->with('completed', 'Your weapon has been created!');
+        //$post = new Weapon()
+        /*$post->weaponname = $request->weaponname;
+        $post->weapontype = $request->weapontype;
+        $post->weaponimg = $request->weaponimg;
+        $post->weaponlore = $request->weaponlore;
+        $post->save();*/
+
+
     }
 
     /**
@@ -50,9 +60,9 @@ class MakeWeaponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -63,7 +73,8 @@ class MakeWeaponController extends Controller
      */
     public function edit($id)
     {
-        //
+        $weapon = Weapon::findOrFail($id);
+        return view('edit', compact('weapon'));
     }
 
     /**
@@ -75,7 +86,14 @@ class MakeWeaponController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->validate([
+        'weaponname' => 'required|max:255',
+        'weawpontype' => 'required|max:255',
+        'weaponimg' => 'required|file',
+        'weaponlore' => 'required|max:255',
+            ]);
+        Weapon::whereId($id)->update($updateData);
+        return redirect('Weapon/make-weapons')->with('completed', 'Weapon has been updated');
     }
 
     /**
@@ -86,6 +104,8 @@ class MakeWeaponController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $weapon = Weapon::findOrFail($id);
+        $weapon->delete();
+        return redirect('Weapon/make-weapons')->with('completed', 'Weapon has been deleted');
     }
 }
