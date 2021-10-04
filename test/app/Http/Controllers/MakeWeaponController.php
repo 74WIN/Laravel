@@ -43,7 +43,7 @@ class MakeWeaponController extends Controller
         ]);
         $weapon = Weapon::create($storeData);
 
-        return redirect('/Weapon/make-weapons')->with('completed', 'Your weapon has been created!');
+        return redirect('/make-weapons')->with('completed', 'Your weapon has been created!');
         //$post = new Weapon()
         /*$post->weaponname = $request->weaponname;
         $post->weapontype = $request->weapontype;
@@ -93,7 +93,7 @@ class MakeWeaponController extends Controller
         'weaponlore' => 'required|max:255',
             ]);
         Weapon::whereId($id)->update($updateData);
-        return redirect('Weapon/make-weapons')->with('completed', 'Weapon has been updated');
+        return redirect('/make-weapons')->with('completed', 'Weapon has been updated');
     }
 
     /**
@@ -106,6 +106,6 @@ class MakeWeaponController extends Controller
     {
         $weapon = Weapon::findOrFail($id);
         $weapon->delete();
-        return redirect('Weapon/make-weapons')->with('completed', 'Weapon has been deleted');
+        return redirect('make-weapons')->with('completed', 'Weapon has been deleted');
     }
 }

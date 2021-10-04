@@ -36,7 +36,7 @@
                     <td>{{$weapons->weaponlore}}</td>
                     <td class="text-center">
                         <a href="{{ route('make-weapons.edit', $weapons->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="{{ route('make-weapon.destroy', $weapons->id)}}" method="post" style="display: inline-block">
+                        <form action="{{ route('make-weapons.destroy', $weapons->id)}}" method="post" style="display: inline-block">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm" type="submit">Delete</button>
