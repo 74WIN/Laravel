@@ -64,8 +64,8 @@ class MakeElementController extends Controller
      */
     public function edit($id)
     {
-        $element = Element::findOrFail($id);
-        return view('element.edit-elements', compact('element'));
+        $element = Element::find($id);
+        return view('Element.edit-elements', compact('element'));
     }
 
     /**

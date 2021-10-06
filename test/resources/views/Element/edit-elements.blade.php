@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit & Update Student
-                            <a href="{{ url('Element/make-elements') }}" class="btn btn-danger float-end">BACK</a>
+                            <a href="{{ url('elements') }}" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -24,19 +24,19 @@
 
                             <div class="form-group mb-3">
                                 <label for="">elementname</label>
-                                <input type="text" name="name" value="{{$student->elementname}}" class="form-control">
+                                <input type="text" name="name" value="{{$element->elementname}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">element type</label>
-                                <input type="text" name="email" value="{{$student->elementtype}}" class="form-control">
+                                <input type="text" name="email" value="{{$element->elementtype}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">element img</label>
-                                <input type="text" name="course" value="{{$student->elementimg}}" class="form-control">
+                                <input type="text" name="course" value="{{$element->elementimg}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">element lore</label>
-                                <input type="text" name="section" value="{{$student->elementlore}}" class="form-control">
+                                <input type="text" name="section" value="{{$element->elementlore}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Update Element</button>
