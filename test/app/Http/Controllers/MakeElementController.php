@@ -95,9 +95,9 @@ class MakeElementController extends Controller
      */
     public function destroy($id)
     {
-        $weapon = Weapon::findOrFail($id);
-        $weapon->delete();
-        return redirect('make-weapons')->with('completed', 'Weapon has been deleted');
+        $element = Element::findOrFail($id);
+        $element->delete();
+        return redirect('elements')->with('completed', 'Weapon has been deleted');
     }
 }
 
