@@ -13,11 +13,11 @@ class CreateElementTable extends Migration
      */
     public function up()
     {
-        Schema::create('element', function (Blueprint $table) {
+        Schema::create('elements', function (Blueprint $table) {
             $table->id();
-            $table->string('elementimg');
             $table->string('elementname');
             $table->string('elementtype');
+            $table->string('elementimg');
             $table->longText('elementlore');
             $table->timestamps();
         });

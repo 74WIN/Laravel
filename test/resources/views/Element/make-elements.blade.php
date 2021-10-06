@@ -1,91 +1,50 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>elements</title>
+@section('content')
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <style>
-
-    </style>
-
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: #ffffff;
-            display: block;
-        }
-        .container{
-            margin: auto;
-            justify-content: center;
-            display: flex;
-        }
-        .form-control{
-            width: 500px;
-        }
-        h1{
-            text-align: center;
-        }
-        .form-control {
-            display: block;
-            width: 100%;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-    </style>
-</head>
-<body class="antialiased">
-<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-    @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
-                <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-            @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-    <h1>Make your Element</h1><br>
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
 
-        <form>
-            <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Element name</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                @if (session('status'))
+                    <h6 class="alert alert-success">{{ session('status') }}</h6>
+                @endif
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Add Student</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <form action="{{ url('make-elements') }}" method="POST">
+                            @csrf
+
+                            <div class="form-group mb-3">
+                                <label for="">Element Name</label>
+                                <input type="text" name="elementname" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Element type</label>
+                                <input type="text" name="elementtype" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Element image</label>
+                                <input type="text" name="elementimg" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Element lore</label>
+                                <input type="text" name="elementlore" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary">Save Element</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Type element</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="sword?">
-            </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Image</label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Specifications</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
     </div>
-</div>
-</body>
-</html>
+
+@endsection

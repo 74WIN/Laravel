@@ -20,8 +20,8 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
-Route::post('/elements', [App\Http\Controllers\ElementController::class, 'store'])->name('elements');
-Route::get('/make-elements', [App\Http\Controllers\MakeElementController::class, 'index'])->name('make-elements');
+Route::get('make-elements', [App\Http\Controllers\MakeElementController::class, 'create']);
+Route::post('make-elements', [App\Http\Controllers\MakeElementController::class, 'store']);
 
 Route::resource('make-weapons', App\Http\Controllers\MakeWeaponController::class);
 
