@@ -12,7 +12,8 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Add Student</h4>
+                        <h4>Add Element</h4>
+                        <a href="{{ url('elementsData') }}" class="btn btn-danger float-end">BACK</a>
                     </div>
                     <div class="card-body">
 

@@ -22,11 +22,18 @@ Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->na
 
 Route::get('make-elements', [App\Http\Controllers\MakeElementController::class, 'create']);
 Route::post('make-elements', [App\Http\Controllers\MakeElementController::class, 'store']);
-Route::get('elements', [App\Http\Controllers\MakeElementController::class, 'index']);
+Route::get('elementsData', [App\Http\Controllers\MakeElementController::class, 'index']);
 Route::get('edit-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'edit']);
 Route::put('update-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'update']);
+Route::get('delete-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'destroy']);
 
-Route::resource('make-weapons', App\Http\Controllers\MakeWeaponController::class);
+Route::get('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'create']);
+Route::post('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'store']);
+Route::get('weaponsData', [App\Http\Controllers\MakeWeaponController::class, 'index']);
+Route::get('edit-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'edit']);
+Route::put('update-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'update']);
+Route::get('delete-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'destroy']);
+
 
 Auth::routes();
 

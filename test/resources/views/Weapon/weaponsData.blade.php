@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>How to Fetch data in Laravel 8</h4>
+                        <h4>Database all weapons</h4>
                     </div>
                     <div class="card-body">
 
@@ -14,27 +14,27 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>element name</th>
-                                <th>element type</th>
-                                <th>element img</th>
-                                <th>element lore</th>
+                                <th>weapon name</th>
+                                <th>weapon type</th>
+                                <th>weapon img</th>
+                                <th>weapon lore</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($element as $item)
+                            @foreach ($weapon as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->elementname }}</td>
-                                    <td>{{ $item->elementtype }}</td>
-                                    <td>{{ $item->elementimg }}</td>
-                                    <td>{{ $item->elementlore }}</td>
+                                    <td>{{ $item->weaponname }}</td>
+                                    <td>{{ $item->weapontype }}</td>
+                                    <td>{{ $item->weaponimg }}</td>
+                                    <td>{{ $item->weaponlore }}</td>
                                     <td>
-                                        <a href="{{ url('edit-elements/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('edit-weapons/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{{ url('delete-weapons/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

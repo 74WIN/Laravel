@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Element;
-use App\Models\weapon;
 use Illuminate\Http\Request;
 class MakeElementController extends Controller
 {
@@ -15,7 +14,7 @@ class MakeElementController extends Controller
     public function index()
     {
         $element = Element::all();
-        return view('element.elements', compact('element'));
+        return view('element.elementsData', compact('element'));
     }
 
     /**
@@ -95,9 +94,9 @@ class MakeElementController extends Controller
      */
     public function destroy($id)
     {
-        $element = Element::findOrFail($id);
+        $element = Element::find($id);
         $element->delete();
-        return redirect('elements')->with('completed', 'Weapon has been deleted');
+        return redirect()->back()->with('status','Element Deleted Successfully');
     }
 }
 
