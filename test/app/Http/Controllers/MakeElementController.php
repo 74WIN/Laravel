@@ -14,7 +14,8 @@ class MakeElementController extends Controller
      */
     public function index()
     {
-
+        $element = Element::all();
+        return view('element.elements', compact('element'));
     }
 
     /**
@@ -63,8 +64,8 @@ class MakeElementController extends Controller
      */
     public function edit($id)
     {
-        $weapon = Weapon::findOrFail($id);
-        return view('edit', compact('weapon'));
+        $element = Element::findOrFail($id);
+        return view('element.edit-elements', compact('element'));
     }
 
     /**
@@ -76,14 +77,14 @@ class MakeElementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateData = $request->validate([
-            'weaponname' => 'required|max:255',
-            'weawpontype' => 'required|max:255',
-            'weaponimg' => 'required|file',
-            'weaponlore' => 'required|max:255',
-        ]);
-        Weapon::whereId($id)->update($updateData);
-        return redirect('/make-weapons')->with('completed', 'Weapon has been updated');
+        $element = Element::find($id);
+        $element->elementname = $request->input('elementname');
+        $element->elementtype = $request->input('elementtype');
+        $element->elementimg = $request->input('elementimg');
+        $element->elementlore = $request->input('elementlore');
+        $element->update();
+
+        return redirect()->back()->with('status','Element Updated Successfully');
     }
 
     /**

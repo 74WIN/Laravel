@@ -22,6 +22,9 @@ Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->na
 
 Route::get('make-elements', [App\Http\Controllers\MakeElementController::class, 'create']);
 Route::post('make-elements', [App\Http\Controllers\MakeElementController::class, 'store']);
+Route::get('elements', [App\Http\Controllers\MakeElementController::class, 'index']);
+Route::get('edit-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'edit']);
+Route::put('update-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'update']);
 
 Route::resource('make-weapons', App\Http\Controllers\MakeWeaponController::class);
 
