@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">weapon image</label>
-                                <input type="text" name="weaponimg" value="{{$weapon->weaponimg}}" class="form-control">
+                                <input type="file" name="weaponimg" value="{{$weapon->weaponimg}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">weapon lore</label>

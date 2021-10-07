@@ -23,7 +23,7 @@ class MakeWeaponController extends Controller
      */
     public function create()
     {
-        return view('Weapon/make-weapons');
+        return view('Weapon.make-weapons');
     }
 
     /**
@@ -49,9 +49,10 @@ class MakeWeaponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show()
     {
-
+        $weapon = Weapon::all();
+        return view('Weapon.weapons', compact('weapon'));
     }
 
     /**

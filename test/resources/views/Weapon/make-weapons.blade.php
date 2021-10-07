@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Weapon image</label>
-                                <input type="text" name="weaponimg" class="form-control">
+                                <input type="file" name="weaponimg" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Weapon lore</label>

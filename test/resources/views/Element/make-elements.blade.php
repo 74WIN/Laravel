@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Element image</label>
-                                <input type="text" name="elementimg" class="form-control">
+                                <input type="file" name="elementimg" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Element lore</label>

@@ -24,7 +24,7 @@ class MakeElementController extends Controller
      */
     public function create()
     {
-        return view('Element/make-elements');
+        return view('Element.make-elements');
     }
 
     /**
@@ -50,9 +50,10 @@ class MakeElementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show()
     {
-
+        $element = Element::all();
+        return view('Element.elements', compact('element'));
     }
 
     /**

@@ -26,6 +26,7 @@ Route::get('elementsData', [App\Http\Controllers\MakeElementController::class, '
 Route::get('edit-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'edit']);
 Route::put('update-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'update']);
 Route::get('delete-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'destroy']);
+Route::get('elements', [App\Http\Controllers\MakeElementController::class, 'show']);
 
 Route::get('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'create']);
 Route::post('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'store']);
@@ -33,6 +34,7 @@ Route::get('weaponsData', [App\Http\Controllers\MakeWeaponController::class, 'in
 Route::get('edit-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'edit']);
 Route::put('update-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'update']);
 Route::get('delete-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'destroy']);
+Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'show']);
 
 
 Auth::routes();
