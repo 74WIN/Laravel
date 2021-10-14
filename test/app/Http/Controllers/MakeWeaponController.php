@@ -63,7 +63,8 @@ class MakeWeaponController extends Controller
         $weapon = new Weapon();
         $weapon->weaponname = $request->input('weaponname');
         $weapon->weapontype = $request->input('weapontype');
-        $weapon->weaponimg = $request->input('weaponimg');
+        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('images','public');
+        $weapon->weaponimg = str_replace('images/', '', $weapon->weaponimg);
         $weapon->weaponlore = $request->input('weaponlore');
         $weapon->save();
         return redirect()->back()->with('status','Weapon Added Successfully');

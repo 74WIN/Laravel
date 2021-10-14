@@ -17,7 +17,7 @@ class CreateWeaponTable extends Migration
             $table->id();
             $table->string('weaponname');
             $table->string('weapontype');
-            $table->binary('weaponimg')->nullable();
+            $table->string('weaponimg')->nullable();
             $table->longText('weaponlore')->nullable();
             $table->timestamps();
         });

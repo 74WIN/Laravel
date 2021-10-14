@@ -6,7 +6,9 @@
     </div>
     <div class="container-sm">
         @foreach($weapon as $item)
-            <img src="{{ $item->weaponimg }}">
+            <div class="image-box">
+                <img src="{{ asset("/storage/images/".$item->weaponimg) }}" alt="" height="300px">
+            </div>
             <p>weapon name: {{ $item->weaponname }}</p>
             <p>weapon type: {{ $item->weapontype }}</p>
             <p>weapon lore: {{ $item->weaponlore }}</p>
