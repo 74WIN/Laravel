@@ -26,9 +26,9 @@
                             @foreach ($element as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->elementimg }}</td>
                                     <td>{{ $item->elementname }}</td>
                                     <td>{{ $item->elementtype }}</td>
+                                    <td>{{ $item->elementimg }}</td>
                                     <td>{{ $item->elementlore }}</td>
                                     <td>
                                         <a href="{{ url('edit-elements/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>

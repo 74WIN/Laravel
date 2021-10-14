@@ -26,9 +26,9 @@
                             @foreach ($weapon as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->weaponimg }}</td>
                                     <td>{{ $item->weaponname }}</td>
                                     <td>{{ $item->weapontype }}</td>
+                                    <td>{{ $item->weaponimg }}</td>
                                     <td>{{ $item->weaponlore }}</td>
                                     <td>
                                         <a href="{{ url('edit-weapons/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
