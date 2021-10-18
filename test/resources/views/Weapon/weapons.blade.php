@@ -4,11 +4,11 @@
         <link rel="stylesheet" href="public/css/app.css">
     </head>
     <div class="input-group">
-        <div class="form-outline">
-            <input type="search" id="form1" class="form-control" />
+        <form class="form-outline" method="GET" action="#">
+            <input type="text" name="search" id="form1" class="form-control" value="{{ request('search') }}" />
             <label class="form-label" for="form1">Search</label>
-        </div>
-        <button type="button" class="btn btn-primary">
+        </form>
+        <button type="button" class="btn btn-primary" >
             <i class="fas fa-search"></i>
         </button>
     </div>

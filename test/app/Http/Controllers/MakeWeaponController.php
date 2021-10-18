@@ -18,7 +18,7 @@ class MakeWeaponController extends Controller
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
         $weapon = Weapon::all();
-        return view('weapon.weaponsData', compact('weapon'));
+        return view('weapon.weaponsData', ['weapon' => $weapon]);
     }
 
     /**
@@ -72,12 +72,12 @@ class MakeWeaponController extends Controller
 
     public function getWeapons ()
     {
-        $query = Input::get ( 'query' );
-        $weapon = Weapon::where ( 'weaponname', 'LIKE', '%' . $query . '%' )->orWhere ( 'weapontype', 'LIKE', '%' . $query . '%' )->get ();
-        if (count ( $weapon ) > 0)
-            return redirect()->back()->with ($weapon)->withQuery ( $query );
-        else
-            return redirect()->back()->with ( 'No Details found. Try to search again !' );
+        $weapon = Weapon::latest();
+        if (request('search')){
+            $weapon->where('weaponname', 'like', '%' . request('search') . '%');
+        }
+
+        return view('Weapon.weapons', ['weapon' => $weapon->get()]);
     }
 
     /**
@@ -101,8 +101,8 @@ class MakeWeaponController extends Controller
 //           }
 //               return view('Weapon.weapons', compact('weapon'));
 //        }
-       $weapon = Weapon::all();
-       return view('Weapon.weapons', compact('weapon'));
+//       $weapon = Weapon::all();
+//       return view('Weapon.weapons', ['weapons' => $weapon]));
     }
 
 
@@ -118,7 +118,7 @@ class MakeWeaponController extends Controller
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
         $weapon = Weapon::find($id);
-        return view('Weapon.edit-weapons', compact('weapon'));
+        return view('Weapon.edit-weapons', ['weapon' => $weapon]);
     }
 
     /**
