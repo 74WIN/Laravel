@@ -17,6 +17,7 @@ class MakeWeaponController extends Controller
         if(auth()->guest() || auth()->user()->role != 'admin'){
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
+        //shows database
         $weapon = Weapon::all();
         return view('weapon.weaponsData', ['weapon' => $weapon]);
     }
@@ -28,9 +29,7 @@ class MakeWeaponController extends Controller
      */
     public function create()
     {
-        if(auth()->guest() || auth()->user()->role != 'admin'){
-            abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
-        }
+        //shows make-weapon view
         return view('Weapon.make-weapons');
     }
 
@@ -59,7 +58,14 @@ class MakeWeaponController extends Controller
      */
     public function store(Request $request)
     {
-
+        //validate the forms
+        $request->validate([
+            'weaponname' => 'required||max:255',
+            'weapontype' => 'required||max:255',
+            'weaponimg' => 'required',
+            'weaponlore' => 'required',
+        ]);
+        //stores weapons in database. The images are stored in a public storage filemap
         $weapon = new Weapon();
         $weapon->weaponname = $request->input('weaponname');
         $weapon->weapontype = $request->input('weapontype');
@@ -72,11 +78,14 @@ class MakeWeaponController extends Controller
 
     public function getWeapons ()
     {
+        //search bar function
         $weapon = Weapon::latest();
         if (request('search')){
-            $weapon->where('weaponname', 'like', '%' . request('search') . '%');
+            $weapon->where('weaponname', 'like', '%' . request('search') . '%')
+            ->orWhere('weapontype', 'like', '%' . request('search') . '%')
+            ->orWhere('weaponlore', 'like', '%' . request('search') . '%');
         }
-
+        //shows weapons view
         return view('Weapon.weapons', ['weapon' => $weapon->get()]);
     }
 
@@ -117,6 +126,8 @@ class MakeWeaponController extends Controller
         if(auth()->guest() || auth()->user()->role != 'admin'){
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
+
+        //shows edit view based on ID
         $weapon = Weapon::find($id);
         return view('Weapon.edit-weapons', ['weapon' => $weapon]);
     }
@@ -133,6 +144,13 @@ class MakeWeaponController extends Controller
         if(auth()->guest() || auth()->user()->role != 'admin'){
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
+        $request->validate([
+            'weaponname' => 'required||max:255',
+            'weapontype' => 'required||max:255',
+            'weaponimg' => 'required',
+            'weaponlore' => 'required',
+        ]);
+        //update function based on ID
         $weapon = Weapon::find($id);
         $weapon->weaponname = $request->input('weaponname');
         $weapon->weapontype = $request->input('weapontype');
@@ -153,6 +171,7 @@ class MakeWeaponController extends Controller
     {   if(auth()->guest() || auth()->user()->role != 'admin'){
         abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
     }
+    //destroys weapon based on ID
         $weapon = Weapon::find($id);
         $weapon->delete();
         return redirect()->back()->with('status','Weapon Deleted Successfully');

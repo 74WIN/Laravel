@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
     <div class="container">
@@ -13,7 +12,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Weapon</h4>
+{{--                        @if ((auth()->user()->role == 'admin'))--}}
                             <a href="{{ url('weaponsData') }}" class="btn btn-danger float-end">BACK</a>
+{{--                        @endif--}}
                     </div>
                     <div class="card-body">
 

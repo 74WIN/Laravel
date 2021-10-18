@@ -21,7 +21,15 @@
                         <form action="{{ url('update-weapons/'.$weapon->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-group mb-3">
                                 <label for="">weapon name</label>
                                 <input type="text" name="weaponname" value="{{$weapon->weaponname}}" class="form-control">
