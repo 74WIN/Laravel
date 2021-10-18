@@ -17,9 +17,17 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('make-weapons') }}" method="POST">
+                        <form action="{{ url('make-weapons') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-group mb-3">
                                 <label for="">Weapon Name</label>
                                 <input type="text" name="weaponname" class="form-control">

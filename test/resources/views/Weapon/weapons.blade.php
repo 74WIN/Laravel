@@ -1,8 +1,16 @@
 @extends ("layouts.app")
 @section ('content')
-    <div>
-        <input placeholder="Search" name="search" type="text" value="" id="search">
-        <label class="hide-text" for="search">Search on words</label>
+    <head>
+        <link rel="stylesheet" href="public/css/app.css">
+    </head>
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" />
+            <label class="form-label" for="form1">Search</label>
+        </div>
+        <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
     <div class="container-sm">
         @foreach($weapon as $item)

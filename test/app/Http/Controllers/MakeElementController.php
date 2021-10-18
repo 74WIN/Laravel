@@ -68,6 +68,11 @@ class MakeElementController extends Controller
         return view('Element.edit-elements', compact('element'));
     }
 
+    public function search(Request $request)
+    {
+
+    }
+
     /**
      * Update the specified resource in storage.
      *

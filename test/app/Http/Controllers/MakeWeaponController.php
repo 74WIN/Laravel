@@ -64,7 +64,7 @@ class MakeWeaponController extends Controller
         $weapon->weaponname = $request->input('weaponname');
         $weapon->weapontype = $request->input('weapontype');
         $weapon->weaponimg = $request->file('weaponimg')->storePublicly('images','public');
-        $weapon->weaponimg = str_replace('images/', '', $weapon->weaponimg);
+        $weapon->weaponimg = str_replace('images', '', $weapon->weaponimg);
         $weapon->weaponlore = $request->input('weaponlore');
         $weapon->save();
         return redirect()->back()->with('status','Weapon Added Successfully');
@@ -88,22 +88,21 @@ class MakeWeaponController extends Controller
      */
     public function show(Request $request)
     {
-        {
-            $search = $request->input('search');
-            if (!$search) {
-                $weapon = Weapon::all();
-//                    ->where('active', '=', 1);
-                return view('Weapon.weapons', compact('weapon'));
-            } else {
-                $weapon = Weapon::where('weaponname','like','%'.$search.'%')
+//        {
+//            $search = $request->input('search');
+//           if (!$search) {
+//               $weapon = Weapon::all()
+//                   ->where('active', '=', 1);
+//          } else {
+//                $weapon = Weapon::where('weaponname','like','%'.$search.'%')
 //                    ->where('active', '=', 1)
-                    ->orderBy('id')
-                    ->paginate(6);
-            }
-                return view('Weapon.weapons', compact('weapon'));
-        }
-//        $weapon = Weapon::all();
-//        return view('Weapon.weapons', compact('weapon'));
+//                 ->orderBy('id')
+//                   ->paginate(6);
+//           }
+//               return view('Weapon.weapons', compact('weapon'));
+//        }
+       $weapon = Weapon::all();
+       return view('Weapon.weapons', compact('weapon'));
     }
 
 
