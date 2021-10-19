@@ -85,6 +85,10 @@ class MakeWeaponController extends Controller
             ->orWhere('weapontype', 'like', '%' . request('search') . '%')
             ->orWhere('weaponlore', 'like', '%' . request('search') . '%');
         }
+        //filter function
+        if (request('filter')){
+            $weapon->where('weapontype', 'like', request('filter'));
+        }
         //shows weapons view
         return view('Weapon.weapons', ['weapon' => $weapon->get()]);
     }
@@ -154,7 +158,8 @@ class MakeWeaponController extends Controller
         $weapon = Weapon::find($id);
         $weapon->weaponname = $request->input('weaponname');
         $weapon->weapontype = $request->input('weapontype');
-        $weapon->weaponimg = $request->input('weaponimg');
+        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('images','public');
+        $weapon->weaponimg = str_replace('images', '', $weapon->weaponimg);
         $weapon->weaponlore = $request->input('weaponlore');
         $weapon->update();
 
