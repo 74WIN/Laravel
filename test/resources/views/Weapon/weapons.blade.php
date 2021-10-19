@@ -5,7 +5,7 @@
     </head>
     <div class="row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
-            <input type="text" name="search" id="form1" class="form-control" value="{{ request('search') }}"/>
+            <input type="text" name="searchWeapons" id="form1" class="form-control" value="{{ request('searchWeapons') }}"/>
             <label class="form-label" for="form1">Search</label>
         </form>
     </div>

@@ -85,10 +85,10 @@ class MakeWeaponController extends Controller
     {
         //search bar function
         $weapon = Weapon::latest();
-        if (request('search')){
-            $weapon->where('weaponname', 'like', '%' . request('search') . '%')
-            ->orWhere('weapontype', 'like', '%' . request('search') . '%')
-            ->orWhere('weaponlore', 'like', '%' . request('search') . '%');
+        if (request('searchWeapons')){
+            $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
+            ->orWhere('weapontype', 'like', '%' . request('searchWeapons') . '%')
+            ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
         }
         //filter function
         if (request('filter')){
