@@ -12,6 +12,7 @@
     <div class="row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
             <select type="text" name="filter" id="form1" class="form-control" value="{{ request('filter') }}">
+                <option value="">Select Weapon type</option>
                 <option value="Auto rifle">Auto rifle</option>
                 <option value="Scout rifle">Scout rifle</option>
                 <option value="SMG">SMG</option>

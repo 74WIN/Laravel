@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row height d-flex justify-content-center align-items-center">
+        <form class="form-outline" method="GET" action="#">
+            <input type="text" name="searchData" id="form1" class="form-control" value="{{ request('searchData') }}"/>
+            <label class="form-label" for="form1">Search</label>
+        </form>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -9,7 +15,6 @@
                         <h4>Database all weapons</h4>
                     </div>
                     <div class="card-body">
-
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>

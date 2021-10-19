@@ -18,8 +18,13 @@ class MakeWeaponController extends Controller
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
         //shows database
-        $weapon = Weapon::all();
-        return view('weapon.weaponsData', ['weapon' => $weapon]);
+        $weapon = Weapon::latest();
+        if (request('searchData')){
+            $weapon->where('weaponname', 'like', '%' . request('searchData') . '%')
+                ->orWhere('weapontype', 'like', '%' . request('searchData') . '%')
+                ->orWhere('weaponlore', 'like', '%' . request('searchData') . '%');
+        }
+        return view('weapon.weaponsData', ['weapon' => $weapon->get()]);
     }
 
     /**
