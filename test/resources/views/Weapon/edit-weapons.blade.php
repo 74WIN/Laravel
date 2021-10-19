@@ -49,9 +49,7 @@
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Update weapon</button>
                             </div>
-
                         </form>
-
                     </div>
                 </div>
             </div>

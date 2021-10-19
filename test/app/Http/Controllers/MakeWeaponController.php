@@ -19,10 +19,10 @@ class MakeWeaponController extends Controller
         }
         //shows database
         $weapon = Weapon::latest();
-        if (request('searchData')){
-            $weapon->where('weaponname', 'like', '%' . request('searchData') . '%')
-                ->orWhere('weapontype', 'like', '%' . request('searchData') . '%')
-                ->orWhere('weaponlore', 'like', '%' . request('searchData') . '%');
+        if (request('searchWeaponData')){
+            $weapon->where('weaponname', 'like', '%' . request('searchWeaponData') . '%')
+                ->orWhere('weapontype', 'like', '%' . request('searchWeaponData') . '%')
+                ->orWhere('weaponlore', 'like', '%' . request('searchWeaponData') . '%');
         }
         return view('weapon.weaponsData', ['weapon' => $weapon->get()]);
     }
@@ -70,12 +70,12 @@ class MakeWeaponController extends Controller
             'weaponimg' => 'required',
             'weaponlore' => 'required',
         ]);
-        //stores weapons in database. The images are stored in a public storage filemap
+        //stores weapons in database. The weaponImages are stored in a public storage filemap
         $weapon = new Weapon();
         $weapon->weaponname = $request->input('weaponname');
         $weapon->weapontype = $request->input('weapontype');
-        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('images','public');
-        $weapon->weaponimg = str_replace('images', '', $weapon->weaponimg);
+        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
+        $weapon->weaponimg = str_replace('weaponImages', '', $weapon->weaponimg);
         $weapon->weaponlore = $request->input('weaponlore');
         $weapon->save();
         return redirect()->back()->with('status','Weapon Added Successfully');
@@ -163,8 +163,8 @@ class MakeWeaponController extends Controller
         $weapon = Weapon::find($id);
         $weapon->weaponname = $request->input('weaponname');
         $weapon->weapontype = $request->input('weapontype');
-        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('images','public');
-        $weapon->weaponimg = str_replace('images', '', $weapon->weaponimg);
+        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
+        $weapon->weaponimg = str_replace('weaponImages', '', $weapon->weaponimg);
         $weapon->weaponlore = $request->input('weaponlore');
         $weapon->update();
 

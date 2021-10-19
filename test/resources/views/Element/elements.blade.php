@@ -25,7 +25,7 @@
         @foreach($element as $item)
             <div class="card col-lg-4">
                 {{--            <div class="image-box">--}}
-                <img class="" src="{{ asset("/storage/images/".$item->elementimg) }}" alt="" height="300px">
+                <img class="" src="{{ asset("/storage/weaponImages/".$item->elementimg) }}" alt="" height="300px">
                 {{--            </div>--}}
                 <div class="card-body">
                     <p class="card-title">Element name: {{ $item->elementname }}</p>

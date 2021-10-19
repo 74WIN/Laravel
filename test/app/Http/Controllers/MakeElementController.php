@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Element;
 use Illuminate\Http\Request;
 class MakeElementController extends Controller
@@ -13,8 +12,17 @@ class MakeElementController extends Controller
      */
     public function index()
     {
-        $element = Element::all();
-        return view('element.elementsData', compact('element'));
+        if(auth()->guest() || auth()->user()->role != 'admin'){
+            abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
+        }
+        //shows database
+        $element = Element::latest();
+        if (request('searchElementData')){
+            $element->where('elementname', 'like', '%' . request('searchElementData') . '%')
+                ->orWhere('elementtype', 'like', '%' . request('searchElementData') . '%')
+                ->orWhere('elementlore', 'like', '%' . request('searchElementData') . '%');
+        }
+        return view('Element.elementsData', ['element' => $element->get()]);
     }
 
     /**
@@ -35,13 +43,33 @@ class MakeElementController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'elementname' => 'required||max:255',
+            'elementtype' => 'required||max:255',
+            'elementimg' => 'required',
+            'elementlore' => 'required',
+        ]);
         $element = new Element();
         $element->elementname = $request->input('elementname');
         $element->elementtype = $request->input('elementtype');
-        $element->elementimg = $request->input('elementimg');
+        $element->elementimg = $request->file('elementimg')->storePublicly('elementImages','public');
+        $element->elementimg = str_replace('elementImages', '', $element->elementimg);
         $element->elementlore = $request->input('elementlore');
         $element->save();
         return redirect()->back()->with('status','Element Added Successfully');
+    }
+
+    public function getElements ()
+    {
+        //search bar function
+        $element = Element::latest();
+        if (request('searchElements')){
+            $element->where('elementname', 'like', '%' . request('searchElements') . '%')
+                ->orWhere('elementtype', 'like', '%' . request('searchElements') . '%')
+                ->orWhere('elementlore', 'like', '%' . request('searchElements') . '%');
+        }
+        //shows weapons view
+        return view('Element.elements', ['element' => $element->get()]);
     }
 
     /**
@@ -50,11 +78,11 @@ class MakeElementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-        $element = Element::all();
-        return view('Element.elements', compact('element'));
-    }
+//    public function show()
+//    {
+//        $element = Element::all();
+//        return view('Element.elements', compact('element'));
+//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -64,6 +92,10 @@ class MakeElementController extends Controller
      */
     public function edit($id)
     {
+        if(auth()->guest() || auth()->user()->role != 'admin'){
+            abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
+        }
+
         $element = Element::find($id);
         return view('Element.edit-elements', compact('element'));
     }
@@ -82,10 +114,22 @@ class MakeElementController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(auth()->guest() || auth()->user()->role != 'admin'){
+            abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
+        }
+
+        $request->validate([
+            'elementname' => 'required||max:255',
+            'elementtype' => 'required||max:255',
+            'elementimg' => 'required',
+            'elementlore' => 'required',
+        ]);
+
         $element = Element::find($id);
         $element->elementname = $request->input('elementname');
         $element->elementtype = $request->input('elementtype');
-        $element->elementimg = $request->input('elementimg');
+        $element->elementimg = $request->file('elementimg')->storePublicly('elementImages','public');
+        $element->elementimg = str_replace('elementImages', '', $element->elementimg);
         $element->elementlore = $request->input('elementlore');
         $element->update();
 

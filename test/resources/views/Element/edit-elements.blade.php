@@ -18,10 +18,18 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('update-elements/'.$element->id) }}" method="POST">
+                        <form action="{{ url('update-elements/'.$element->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-group mb-3">
                                 <label for="">elementname</label>
                                 <input type="text" name="elementname" value="{{$element->elementname}}" class="form-control">
@@ -41,9 +49,7 @@
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Update Element</button>
                             </div>
-
                         </form>
-
                     </div>
                 </div>
             </div>
