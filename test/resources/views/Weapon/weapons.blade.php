@@ -24,9 +24,9 @@
     <div class="row">
         @foreach($weapon as $item)
         <div class="card col-lg-4">
-            {{--            <div class="image-box">--}}
+            <div class="image-box">
             <img class="" src="{{ asset("/storage/weaponImages/".$item->weaponimg) }}" alt="" height="300px">
-            {{--            </div>--}}
+            </div>
             <div class="card-body">
                 <p class="card-title">Weapon name: {{ $item->weaponname }}</p>
                 <p class="card-title">Weapon type: {{ $item->weapontype }}</p>
@@ -38,4 +38,13 @@
         </div>
         @endforeach
     </div>
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center align ">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
 @endsection

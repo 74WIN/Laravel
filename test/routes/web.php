@@ -20,6 +20,10 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
+Route::get('profile', [App\Http\Controllers\UserController::class, 'index']);
+Route::get('edit-profile', [App\Http\Controllers\UserController::class, 'edit']);
+Route::post('update-profile', [App\Http\Controllers\UserController::class, 'profileUpdate']);
+
 Route::get('make-elements', [App\Http\Controllers\MakeElementController::class, 'create']);
 Route::post('make-elements', [App\Http\Controllers\MakeElementController::class, 'store']);
 Route::get('elementsData', [App\Http\Controllers\MakeElementController::class, 'index']);
