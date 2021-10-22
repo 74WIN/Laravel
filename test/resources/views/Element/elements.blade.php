@@ -5,12 +5,14 @@
     </head>
     <div class="row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
+            @csrf
             <input type="text" name="searchElements" id="form1" class="form-control" value="{{ request('searchElements') }}"/>
             <label class="form-label" for="form1">Search</label>
         </form>
     </div>
     <div class="row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
+            @csrf
             <select type="text" name="filter" id="form1" class="form-control" value="{{ request('filter') }}">
                 <option value="">Select Weapon type</option>
                 <option value="Auto rifle">Auto rifle</option>

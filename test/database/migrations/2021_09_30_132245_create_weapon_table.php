@@ -19,6 +19,7 @@ class CreateWeaponTable extends Migration
             $table->string('weapontype');
             $table->string('weaponimg')->nullable();
             $table->longText('weaponlore')->nullable();
+            $table->boolean('active');
             $table->timestamps();
         });
     }

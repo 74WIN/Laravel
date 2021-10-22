@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <div class="row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
             @csrf
@@ -15,7 +13,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Database all weapons</h4>
+                        <h4>Database all profiles</h4>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">

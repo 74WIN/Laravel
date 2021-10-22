@@ -14,12 +14,21 @@ class UserController extends Controller
      */
     public function index()
     {
-
+        if(auth()->guest() || auth()->user()->role != 'admin'){
+            abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
+        }
+        //shows database
+        $profile = User::latest();
+        if (request('searchProfileData')){
+            $profile->where('name', 'like', '%' . request('searchProfileData') . '%')
+                ->orWhere('email', 'like', '%' . request('searchProfileData') . '%');
+        }
+        return view('Profile.profilesData', ['profile' => $profile->get()]);
     }
 
     public function show(User $user)
     {
-        return view('user');
+        return view('Profile.profilesData');
     }
     /**
      * Responds with a welcome message with instructions

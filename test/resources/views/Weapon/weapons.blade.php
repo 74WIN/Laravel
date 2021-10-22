@@ -5,12 +5,14 @@
     </head>
     <div class="row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
+            @csrf
             <input type="text" name="searchWeapons" id="form1" class="form-control" value="{{ request('searchWeapons') }}"/>
             <label class="form-label" for="form1">Search</label>
         </form>
     </div>
     <div class="row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
+            @csrf
             <select type="text" name="filter" id="form1" class="form-control" value="{{ request('filter') }}">
                 <option value="">Select Weapon type</option>
                 <option value="Auto rifle">Auto rifle</option>
@@ -20,6 +22,7 @@
             </select>
             <label class="form-label" for="form1">filter</label>
         </form>
+        <a class="btn btn-primary" href="#" role="button">Link</a>
     </div>
     <div class="row">
         @foreach($weapon as $item)
