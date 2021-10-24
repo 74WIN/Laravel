@@ -49,7 +49,6 @@
 {{--                                    <option value="Grenade">Grenade</option>--}}
 {{--                                    <option value="Other">Other</option>--}}
                                 </select>
-
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Weapon image</label>

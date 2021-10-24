@@ -16,11 +16,14 @@ class CreateWeaponTable extends Migration
         Schema::create('weapons', function (Blueprint $table) {
             $table->id();
             $table->string('weaponname');
-            $table->foreignId('weapontype_id')->references('id')->on('weapontypes');
+            $table->foreignId('weapontype_id')->references('id')->on('weapontypes')->onDelete('cascade');
             $table->string('weaponimg')->nullable();
             $table->longText('weaponlore')->nullable();
             $table->boolean('active');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

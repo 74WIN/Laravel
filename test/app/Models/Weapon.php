@@ -22,14 +22,6 @@ class Weapon extends Model
         return $this->belongsTo(Weapontype::class);
     }
 
-
-//    public function weapontype()
-//    {
-//        return $this->hasOne(Weapontype::class);
-//    }
-
-
-
     public function scopeFilter($query)
     {
         if (request('search'))

@@ -3,24 +3,17 @@
     <head>
         <link rel="stylesheet" href="public/css/app.css">
     </head>
-    <div class="row height d-flex justify-content-center align-items-center">
+    <div class="input-group row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
             @csrf
             <input type="text" name="searchWeapons" id="form1" class="form-control" value="{{ request('searchWeapons') }}"/>
-            <label class="form-label" for="form1">Search</label>
-        </form>
-    </div>
-    <div class="row height d-flex justify-content-center align-items-center">
-        <form class="form-outline" method="GET" action="#">
-            @csrf
-            <select type="text" name="filter" id="form1" class="form-control" value="{{ request('filter') }}">
-                <option value="">Select Weapon type</option>
-                <option value="Auto rifle">Auto rifle</option>
-                <option value="Scout rifle">Scout rifle</option>
-                <option value="SMG">SMG</option>
-                <option value="sniper">Sniper</option>
+            <select type="text"  name="filter" id="form1" class="form-control">
+                <option value="">Select Weapon Type</option>
+                @foreach($weapontypes as $weapontype)
+                    <option value="{{$weapontype->id}}">{{$weapontype->name}}</option>
+                @endforeach()
             </select>
-            <label class="form-label" for="form1">filter</label>
+            <button type="submit" class="btn btn-primary align-items-center ">Search</button>
         </form>
 {{--        <form action="{{ url('filter') }}" method="GET">--}}
 {{--            <select name="type_id" id="input">--}}
@@ -33,7 +26,6 @@
 {{--            </select>--}}
 {{--            <input type="submit" class="btn btn-danger btn-sm" value="Filter">--}}
 {{--        </form>--}}
-        <a class="btn btn-primary" href="#" role="button">Link</a>
     </div>
     <div class="row">
         @foreach($weapon as $weapon)

@@ -102,22 +102,21 @@ class MakeWeaponController extends Controller
 
     public function getWeapons ()
     {
+        $weapontypes = Weapontype::all();
         //search bar function
         $weapon = Weapon::latest();
-        $weapontype = Weapontype::latest("name");
         if (request('searchWeapons')){
-            $weapontype->where('weapontype_id', 'like', '%' . request('searchWeapons') . '%');
             $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weapontype_id', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
 
         }
         //filter function
-//        if (request('filter')){
-//            $weapon->where('weapontype', 'like', request('filter'));
-//        }
+        if (request('filter')){
+            $weapon->where('weapontype_id', 'like', request('filter'));
+        }
         //shows weapons view
-        return view('Weapon.weapons', ['weapon' => $weapon->get()], ['weapontype' => $weapontype->get()]);
+        return view('Weapon.weapons', ['weapon' => $weapon->get()], ['weapontypes' => $weapontypes]);
     }
 
     /**
