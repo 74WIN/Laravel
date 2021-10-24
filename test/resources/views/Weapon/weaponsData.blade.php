@@ -3,11 +3,17 @@
 @section('content')
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <div class="row height d-flex justify-content-center align-items-center">
+    <div class="input-group row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
             @csrf
-            <input type="text" name="searchData" id="form1" class="form-control" value="{{ request('searchData') }}"/>
-            <label class="form-label" for="form1">Search</label>
+            <input type="text" name="searchWeapons" id="form1" class="form-control" value="{{ request('searchWeapons') }}"/>
+            <select type="text"  name="filter" id="form1" class="form-control">
+                <option value="">Select Weapon Type</option>
+                @foreach($weapontypes as $weapontype)
+                    <option value="{{$weapontype->id}}">{{$weapontype->name}}</option>
+                @endforeach()
+            </select>
+            <button type="submit" class="btn btn-primary align-items-center ">Search</button>
         </form>
     </div>
     <div class="container">
@@ -24,8 +30,8 @@
                                 <th>ID</th>
                                 <th>weapon name</th>
                                 <th>weapon type</th>
-                                <th>weapon img</th>
                                 <th>weapon lore</th>
+                                <th>weapon img</th>
                                 <th>Active</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -36,9 +42,9 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->weaponname }}</td>
-                                    <td>{{ $item->weapontype->weapontype }}</td>
+                                    <td>{{ $item->weapontype->name }}</td>
+                                    <td><details><summary>Lore</summary>{{ $item->weaponlore }}</details></td>
                                     <td>{{ $item->weaponimg }}</td>
-                                    <td>{{ $item->weaponlore }}</td>
                                     <td>
                                         <input type="checkbox" checked data-toggle="toggle">
                                     </td>

@@ -15,17 +15,6 @@
             </select>
             <button type="submit" class="btn btn-primary align-items-center ">Search</button>
         </form>
-{{--        <form action="{{ url('filter') }}" method="GET">--}}
-{{--            <select name="type_id" id="input">--}}
-{{--                <option value="0">Select Price</option>--}}
-{{--                @foreach (\App\Models\Weapontype::select('id','weapontype')->get() as $weapontype)--}}
-{{--                    <option value="{{ $weapontype->id }}" {{ $weapontype->id == $selected_id['$weapontype_id'] ? 'selected' : '' }}>--}}
-{{--                        {{ $weapontype['$weapontype'] }}--}}
-{{--                    </option>--}}
-{{--                @endforeach--}}
-{{--            </select>--}}
-{{--            <input type="submit" class="btn btn-danger btn-sm" value="Filter">--}}
-{{--        </form>--}}
     </div>
     <div class="row">
         @foreach($weapon as $weapon)

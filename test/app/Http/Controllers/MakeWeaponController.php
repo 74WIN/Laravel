@@ -19,13 +19,21 @@ class MakeWeaponController extends Controller
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
         //shows database
+        $weapontypes = Weapontype::all();
+        //search bar function
         $weapon = Weapon::latest();
-        if (request('searchWeaponData')){
-            $weapon->where('weaponname', 'like', '%' . request('searchWeaponData') . '%')
-                ->orWhere('weapontype_id', 'like', '%' . request('searchWeaponData') . '%')
-                ->orWhere('weaponlore', 'like', '%' . request('searchWeaponData') . '%');
+        if (request('searchWeapons')){
+            $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
+                ->orWhere('weapontype_id', 'like', '%' . request('searchWeapons') . '%')
+                ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
+
         }
-        return view('weapon.weaponsData', ['weapon' => $weapon->get()]);
+        //filter function
+        if (request('filter')){
+            $weapon->where('weapontype_id', 'like', request('filter'));
+        }
+        //shows weapons view
+        return view('Weapon.weaponsData', ['weapon' => $weapon->get()], ['weapontypes' => $weapontypes]);
     }
 
 //    public function filter(Request $request){
