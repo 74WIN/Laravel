@@ -12,7 +12,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Edit & Update Student
+                        <h4>Edit & Update Weapon
                             <a href="{{ url('weaponsData') }}" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>

@@ -40,7 +40,7 @@ Route::put('update-weapons/{id}', [App\Http\Controllers\MakeWeaponController::cl
 Route::get('delete-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'destroy']);
 //Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'show']);
 Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'getWeapons']);
-//Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'filter']);
+//Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'changeWeaponStatus']);
 Auth::routes();
 
 
