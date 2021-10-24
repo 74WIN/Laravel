@@ -36,7 +36,11 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">weapon type</label>
-                                <input type="text" name="weapontype" value="{{$weapon->weapontype}}" class="form-control">
+                                <select type="text" name="weapontype" id="form1" class="form-control">
+                                    @foreach($weapontypes as $weapontype)
+                                        <option value="{{$weapontype->id}}">{{$weapontype->name}}</option>
+                                @endforeach()
+                                </select>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">weapon image</label>

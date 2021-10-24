@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->weaponname }}</td>
-                                    <td>{{ $item->weapontype }}</td>
+                                    <td>{{ $item->weapontype->weapontype }}</td>
                                     <td>{{ $item->weaponimg }}</td>
                                     <td>{{ $item->weaponlore }}</td>
                                     <td>

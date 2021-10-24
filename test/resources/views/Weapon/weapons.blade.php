@@ -22,20 +22,31 @@
             </select>
             <label class="form-label" for="form1">filter</label>
         </form>
+{{--        <form action="{{ url('filter') }}" method="GET">--}}
+{{--            <select name="type_id" id="input">--}}
+{{--                <option value="0">Select Price</option>--}}
+{{--                @foreach (\App\Models\Weapontype::select('id','weapontype')->get() as $weapontype)--}}
+{{--                    <option value="{{ $weapontype->id }}" {{ $weapontype->id == $selected_id['$weapontype_id'] ? 'selected' : '' }}>--}}
+{{--                        {{ $weapontype['$weapontype'] }}--}}
+{{--                    </option>--}}
+{{--                @endforeach--}}
+{{--            </select>--}}
+{{--            <input type="submit" class="btn btn-danger btn-sm" value="Filter">--}}
+{{--        </form>--}}
         <a class="btn btn-primary" href="#" role="button">Link</a>
     </div>
     <div class="row">
-        @foreach($weapon as $item)
+        @foreach($weapon as $weapon)
         <div class="card col-lg-4">
             <div class="image-box">
-            <img class="" src="{{ asset("/storage/weaponImages/".$item->weaponimg) }}" alt="" height="300px">
+            <img class="" src="{{ asset("/storage/weaponImages/".$weapon->weaponimg) }}" alt="" height="300px">
             </div>
             <div class="card-body">
-                <p class="card-title">Weapon name: {{ $item->weaponname }}</p>
-                <p class="card-title">Weapon type: {{ $item->weapontype }}</p>
+                <p class="card-title">Weapon name: {{ $weapon->weaponname }}</p>
+                <p class="card-title">Weapon type: {{ $weapon->weapontype->name }}</p>
                 <details class="card-text">
                     <summary>Weapon Lore</summary>
-                    weapon lore: {{ $item->weaponlore }}
+                    {{ $weapon->weaponlore }}
                 </details>
             </div>
         </div>

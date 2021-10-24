@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWeaponTable extends Migration
+class CreateWeapontypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateWeaponTable extends Migration
      */
     public function up()
     {
-        Schema::create('weapons', function (Blueprint $table) {
+        Schema::create('weapontypes', function (Blueprint $table) {
             $table->id();
-            $table->string('weaponname');
-            $table->foreignId('weapontype_id')->references('id')->on('weapontypes');
-            $table->string('weaponimg')->nullable();
-            $table->longText('weaponlore')->nullable();
-            $table->boolean('active');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -31,8 +27,6 @@ class CreateWeaponTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weapons');
+        Schema::dropIfExists('weapontypes');
     }
 }
-
-

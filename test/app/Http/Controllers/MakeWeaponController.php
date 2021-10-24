@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Weapon;
+use App\Models\Weapontype;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 
@@ -21,11 +22,26 @@ class MakeWeaponController extends Controller
         $weapon = Weapon::latest();
         if (request('searchWeaponData')){
             $weapon->where('weaponname', 'like', '%' . request('searchWeaponData') . '%')
-                ->orWhere('weapontype', 'like', '%' . request('searchWeaponData') . '%')
+                ->orWhere('weapontype_id', 'like', '%' . request('searchWeaponData') . '%')
                 ->orWhere('weaponlore', 'like', '%' . request('searchWeaponData') . '%');
         }
         return view('weapon.weaponsData', ['weapon' => $weapon->get()]);
     }
+
+//    public function filter(Request $request){
+//        $weapon = Weapon::where( function($query) use($request){
+//            return $request->weapontype_id?
+//                $query->from('weapontypes')->where('id',$request->weapontype_id) : '';
+//        })
+//            ->with('weapontype')
+//            ->get();
+//
+//        $selected_id = [];
+//        $selected_id['weapontype_id'] = $request->weapontype_id;
+//
+//        return view('Weapon.weapons',compact('weapon','selected_id'));
+//
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -34,8 +50,10 @@ class MakeWeaponController extends Controller
      */
     public function create()
     {
+        $weapontypes = Weapontype::all();
         //shows make-weapon view
-        return view('Weapon.make-weapons');
+        return view('Weapon.make-weapons', ['weapontypes' => $weapontypes]);
+
     }
 
 //    public function search(Request $request)
@@ -73,10 +91,11 @@ class MakeWeaponController extends Controller
         //stores weapons in database. The weaponImages are stored in a public storage filemap
         $weapon = new Weapon();
         $weapon->weaponname = $request->input('weaponname');
-        $weapon->weapontype = $request->input('weapontype');
+        $weapon->weapontype_id = $request->input('weapontype');
         $weapon->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
         $weapon->weaponimg = str_replace('weaponImages', '', $weapon->weaponimg);
         $weapon->weaponlore = $request->input('weaponlore');
+        $weapon->active = 1;
         $weapon->save();
         return redirect()->back()->with('status','Weapon Added Successfully');
     }
@@ -85,17 +104,20 @@ class MakeWeaponController extends Controller
     {
         //search bar function
         $weapon = Weapon::latest();
+        $weapontype = Weapontype::latest("name");
         if (request('searchWeapons')){
+            $weapontype->where('weapontype_id', 'like', '%' . request('searchWeapons') . '%');
             $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
-            ->orWhere('weapontype', 'like', '%' . request('searchWeapons') . '%')
+            ->orWhere('weapontype_id', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
+
         }
         //filter function
-        if (request('filter')){
-            $weapon->where('weapontype', 'like', request('filter'));
-        }
+//        if (request('filter')){
+//            $weapon->where('weapontype', 'like', request('filter'));
+//        }
         //shows weapons view
-        return view('Weapon.weapons', ['weapon' => $weapon->get()]);
+        return view('Weapon.weapons', ['weapon' => $weapon->get()], ['weapontype' => $weapontype->get()]);
     }
 
     /**
@@ -138,7 +160,8 @@ class MakeWeaponController extends Controller
 
         //shows edit view based on ID
         $weapon = Weapon::find($id);
-        return view('Weapon.edit-weapons', ['weapon' => $weapon]);
+        $weapontypes = Weapontype::all();
+        return view('Weapon.edit-weapons', ['weapon' => $weapon], ['weapontypes' => $weapontypes]);
     }
 
     /**
@@ -162,7 +185,7 @@ class MakeWeaponController extends Controller
         //update function based on ID
         $weapon = Weapon::find($id);
         $weapon->weaponname = $request->input('weaponname');
-        $weapon->weapontype = $request->input('weapontype');
+        $weapon->weapontype_id = $request->input('weapontype');
         $weapon->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
         $weapon->weaponimg = str_replace('weaponImages', '', $weapon->weaponimg);
         $weapon->weaponlore = $request->input('weaponlore');

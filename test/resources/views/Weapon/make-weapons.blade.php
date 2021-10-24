@@ -33,19 +33,23 @@
                             <div class="form-group mb-3">
                                 <label for="">Weapon type</label>
                                 <select type="text" name="weapontype" id="form1" class="form-control">
-                                    <option value="">Select Weapon type</option>
-                                    <option value="Auto rifle">Auto rifle</option>
-                                    <option value="Scout rifle">Scout rifle</option>
-                                    <option value="SMG">SMG</option>
-                                    <option value="Sniper">Sniper</option>
-                                    <option value="Pistol">Pistol</option>
-                                    <option value="Shotgun">Shotgun</option>
-                                    <option value="LMG">LMG</option>
-                                    <option value="Bow">Bow</option>
-                                    <option value="Rocket Launcher">Rocket Launcher</option>
-                                    <option value="Grenade">Grenade</option>
-                                    <option value="Other">Other</option>
+                                    @foreach($weapontypes as $weapontype)
+                                        <option value="{{$weapontype->id}}">{{$weapontype->name}}</option>
+                                        @endforeach()
+{{--                                    <option value="">Select Weapon type</option>--}}
+{{--                                    <option value="Auto rifle">Auto rifle</option>--}}
+{{--                                    <option value="Scout rifle">Scout rifle</option>--}}
+{{--                                    <option value="SMG">SMG</option>--}}
+{{--                                    <option value="Sniper">Sniper</option>--}}
+{{--                                    <option value="Pistol">Pistol</option>--}}
+{{--                                    <option value="Shotgun">Shotgun</option>--}}
+{{--                                    <option value="LMG">LMG</option>--}}
+{{--                                    <option value="Bow">Bow</option>--}}
+{{--                                    <option value="Rocket Launcher">Rocket Launcher</option>--}}
+{{--                                    <option value="Grenade">Grenade</option>--}}
+{{--                                    <option value="Other">Other</option>--}}
                                 </select>
+
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Weapon image</label>
