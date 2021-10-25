@@ -37,6 +37,7 @@
                             <div class="form-group mb-3">
                                 <label for="">weapon type</label>
                                 <select type="text" name="weapontype" id="form1" class="form-control">
+                                    <option value="">Select Weapon Type</option>
                                     @foreach($weapontypes as $weapontype)
                                         <option value="{{$weapontype->id}}">{{$weapontype->name}}</option>
                                 @endforeach()
