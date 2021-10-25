@@ -20,7 +20,7 @@
         @foreach($weapon as $weapon)
         <div class="card col-lg-4">
             <div class="image-box">
-            <img class="" src="{{ asset("/storage/weaponImages/".$weapon->weaponimg) }}" alt="" height="300px">
+            <img src="{{ asset("/storage/weaponImages/".$weapon->weaponimg) }}" width="600px" height="300px">
             </div>
             <div class="card-body">
                 <p class="card-title">Weapon name: {{ $weapon->weaponname }}</p>

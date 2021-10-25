@@ -117,11 +117,10 @@ class MakeWeaponController extends Controller
             $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weapontype_id', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
-
         }
         //filter function
-        if (request('filter')){
-            $weapon->where('weapontype_id', 'like', request('filter'));
+        elseif (request('filter')){
+            $weapon->where('weapontype_id', 'like', '%' . request('filter') . '%');
         }
         //shows weapons view
         return view('Weapon.weapons', ['weapon' => $weapon->get()], ['weapontypes' => $weapontypes]);
