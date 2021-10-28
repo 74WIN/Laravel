@@ -96,6 +96,7 @@ class MakeWeaponController extends Controller
             'weapontype' => 'required||max:255',
             'weaponimg' => 'required',
             'weaponlore' => 'required',
+
         ]);
         //stores weapons in database. The weaponImages are stored in a public storage filemap
         $weapon = new Weapon();

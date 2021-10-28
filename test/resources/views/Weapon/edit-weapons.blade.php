@@ -20,7 +20,6 @@
 
                         <form action="{{ url('update-weapons/'.$weapon->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>

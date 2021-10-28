@@ -1,9 +1,13 @@
 @extends('layouts.app')
-
+@section('head')
+{{--    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+@endsection
 @section('content')
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    @if (session('status'))
+        <h6 class="alert alert-success">{{ session('status') }}</h6>
+    @endif
     <div class="input-group row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
             @csrf
@@ -46,9 +50,18 @@
                                     <td>{{ $weapon->weaponname }}</td>
                                     <td>{{ $weapon->weapontype->name }}</td>
                                     <td><details><summary>Lore</summary>{{ $weapon->weaponlore }}</details></td>
-                                    <td>
-                                        <input data-id="{{$weapon->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $weapon->status ? 'checked' : '' }}>
-                                    </td>
+                                    <form id="{{$weapon->id}}" action="{{url('weaponsData/changeStatus/'.$weapon->id)}}" method="POST">
+                                        @method('PATCH')
+                                        @csrf
+                                        <td data-id="{{ $weapon->id }}">
+                                            <input type="checkbox"
+                                                   id="active-{{$weapon->id}}"
+                                                   name="active" class="js-switch"
+                                                   onchange="this.form.submit()"
+                                                {{ $weapon->active === 1 ? 'checked' : '' }}>
+                                        </td>
+                                    </form>
+
                                     <td>
                                         <a href="{{ url('edit-weapons/'.$weapon->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                     </td>
@@ -66,21 +79,17 @@
     </div>
 
 @endsection
-<script>
-    $(function() {
-        $('.toggle-class').change(function() {
-            var status = $(this).prop('checked') == true ? 1 : 0;
-            var weapon_id = $(this).data('id');
+@section('footer')
+    <script>
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '/changeStatus',
-                data: {'status': status, 'weapon_id': weapon_id},
-                success: function(data){
-                    console.log(data.success)
-                }
-            });
-        })
-    })
-</script>
+        elems.forEach(function(html) {
+            let switchery = new Switchery(html,  { size: 'small' });
+        });
+    </script>
+{{--    <script src="{{asset("js/main.js")}}"></script>--}}
+@endsection
+
+
+
+

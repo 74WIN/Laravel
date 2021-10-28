@@ -18,19 +18,21 @@
     </div>
     <div class="row">
         @foreach($weapon as $weapon)
-        <div class="card col-lg-4">
-            <div class="image-box">
-            <img src="{{ asset("/storage/weaponImages/".$weapon->weaponimg) }}" width="600px" height="300px">
+            @if($weapon->active === 1)
+            <div class="card col-lg-4">
+                <div class="image-box">
+                <img src="{{ asset("/storage/weaponImages/".$weapon->weaponimg) }}" width="300px" height="150px">
+                </div>
+                <div class="card-body">
+                    <p class="card-title">Weapon name: {{ $weapon->weaponname }}</p>
+                    <p class="card-title">Weapon type: {{ $weapon->weapontype->name }}</p>
+                    <details class="card-text">
+                        <summary>Weapon Lore</summary>
+                        {{ $weapon->weaponlore }}
+                    </details>
+                </div>
             </div>
-            <div class="card-body">
-                <p class="card-title">Weapon name: {{ $weapon->weaponname }}</p>
-                <p class="card-title">Weapon type: {{ $weapon->weapontype->name }}</p>
-                <details class="card-text">
-                    <summary>Weapon Lore</summary>
-                    {{ $weapon->weaponlore }}
-                </details>
-            </div>
-        </div>
+            @endif
         @endforeach
     </div>
     <nav aria-label="Page navigation example ">

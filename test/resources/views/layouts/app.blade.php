@@ -18,6 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{--Ajax loading in--}}
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+    {{--Cloudlfare Toggle--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+    @yield('head')
 </head>
 <body>
     <div id="app">
@@ -39,6 +47,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/elements">Elements</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/make-weapons">Make your weapon</a>
+                        </li>
+                        @auth()
+                        @if(auth()->user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/weaponsData">Weapon Database</a>
+                        </li>
+                        @endif
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -82,10 +100,10 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 </body>
+<div>@yield('footer')</div>
 </html>

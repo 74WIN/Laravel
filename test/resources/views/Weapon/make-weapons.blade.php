@@ -10,10 +10,14 @@
                 @endif
 
                 <div class="card">
+                    <h4>Add Weapon</h4>
+                    @auth()
+                        @if(auth()->user()->role === 'admin')
                     <div class="card-header">
-                        <h4>Add Weapon</h4>
-                        <a href="{{ url('weaponsData') }}" class="btn btn-danger float-end">BACK</a>
+                        <a href="{{ url('weaponsData') }}" class="btn btn-danger float-end">Go to Weapon Database</a>
                     </div>
+                        @endif
+                    @endauth
                     <div class="card-body">
                         <form action="{{ url('make-weapons') }}" method="POST" enctype="multipart/form-data">
                             @csrf

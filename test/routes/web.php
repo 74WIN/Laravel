@@ -35,12 +35,12 @@ Route::get('elements', [App\Http\Controllers\MakeElementController::class, 'getE
 Route::get('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'create']);
 Route::post('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'store']);
 Route::get('weaponsData', [App\Http\Controllers\MakeWeaponController::class, 'index']);
+Route::patch('weaponsData/changeStatus/{id}', [App\Http\Controllers\WeaponController::class, 'changeWeaponStatus'])->name('changeStatus');
 Route::get('edit-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'edit']);
 Route::put('update-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'update']);
 Route::get('delete-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'destroy']);
 //Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'show']);
 Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'getWeapons']);
-//Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'changeWeaponStatus']);
 Auth::routes();
 
 
