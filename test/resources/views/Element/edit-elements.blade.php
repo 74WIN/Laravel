@@ -12,7 +12,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Edit & Update Student
+                        <h4>Edit & Update Weapon
                             <a href="{{ url('elementsData') }}" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
@@ -31,23 +31,28 @@
                                 </div>
                             @endif
                             <div class="form-group mb-3">
-                                <label for="">elementname</label>
+                                <label for="">element name</label>
                                 <input type="text" name="elementname" value="{{$element->elementname}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">element type</label>
-                                <input type="text" name="elementtype" value="{{$element->elementtype}}" class="form-control">
+                                <select type="text" name="elementtype" id="form1" class="form-control">
+                                    <option value="">Select Weapon Type</option>
+                                    @foreach($elementtypes as $elementtype)
+                                        <option value="{{$elementtype->id}}">{{$elementtype->name}}</option>
+                                    @endforeach()
+                                </select>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">element img</label>
-                                <input type="text" name="elementimg" value="{{$element->elementimg}}" class="form-control">
+                                <label for="">element image</label>
+                                <input type="file" name="elementimg" value="{{$element->elementimg}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">element lore</label>
                                 <input type="text" name="elementlore" value="{{$element->elementlore}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-primary">Update Element</button>
+                                <button type="submit" class="btn btn-primary">Update element</button>
                             </div>
                         </form>
                     </div>

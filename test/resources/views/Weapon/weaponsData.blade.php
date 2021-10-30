@@ -50,7 +50,7 @@
                                     <td>{{ $weapon->weaponname }}</td>
                                     <td>{{ $weapon->weapontype->name }}</td>
                                     <td><details><summary>Lore</summary>{{ $weapon->weaponlore }}</details></td>
-                                    <form id="{{$weapon->id}}" action="{{url('weaponsData/changeStatus/'.$weapon->id)}}" method="POST">
+                                    <form id="{{$weapon->id}}" action="{{url('weaponsData/'. $weapon->id)}}" method="POST">
                                         @method('PATCH')
                                         @csrf
                                         <td data-id="{{ $weapon->id }}">

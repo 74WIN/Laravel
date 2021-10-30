@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function weapons()
     {
-        return $this->hasMany(Weapon::class);
+        return $this->belongsToMany(Weapon::class, 'favorites');
     }
     /**
      * The attributes that are mass assignable.

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use App\Models\Weapon;
 use App\Models\Weapontype;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
 
 class MakeWeaponController extends Controller
@@ -15,16 +17,14 @@ class MakeWeaponController extends Controller
      */
     public function index()
     {
-        if(auth()->guest() || auth()->user()->role != 'admin'){
+        if(auth()->user()->role != 'admin'){
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
-        //shows database
-        $weapontypes = Weapontype::all();
         //search bar function
+        $weapontypes = Weapontype::all();
         $weapon = Weapon::latest();
         if (request('searchWeapons')){
             $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
-                ->orWhere('weapontype_id', 'like', '%' . request('searchWeapons') . '%')
                 ->orWhere('id', 'like', '%' . request('searchWeapons') . '%')
                 ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
 
@@ -33,9 +33,11 @@ class MakeWeaponController extends Controller
         if (request('filter')){
             $weapon->where('weapontype_id', 'like', request('filter'));
         }
-        //shows weapons view
+        //shows weapons database
         return view('Weapon.weaponsData', ['weapon' => $weapon->get()], ['weapontypes' => $weapontypes]);
     }
+
+
 
 //    public function filter(Request $request){
 //        $weapon = Weapon::where( function($query) use($request){
@@ -59,10 +61,21 @@ class MakeWeaponController extends Controller
      */
     public function create()
     {
-        $weapontypes = Weapontype::all();
-        //shows make-weapon view
-        return view('Weapon.make-weapons', ['weapontypes' => $weapontypes]);
-
+        //if the current user is a guest, then give message 'Please log in first"
+        if (auth()->guest()){
+            return redirect()->back()->with('status', 'Please log in first');
+        }
+        $user = Auth::user();
+        $weapon = array($user->weapon);
+        dd($weapon);
+//        if user has favorited 3 weapons, then he can make a weapon
+        if(count(array($weapon)) > 3){
+            $weapontypes = Weapontype::all();
+            //shows make-weapon view
+            return view('Weapon.make-weapons', ['weapontypes' => $weapontypes]);
+        }else{
+            return redirect()->back()->with('status', 'You need 3 favorite to unlock this feature');
+        }
     }
 
 //    public function search(Request $request)
@@ -157,7 +170,7 @@ class MakeWeaponController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -185,11 +198,11 @@ class MakeWeaponController extends Controller
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
         $request->validate([
-            'weaponname' => 'required||max:255',
-            'weapontype' => 'required||max:255',
-            'weaponimg' => 'required',
-            'weaponlore' => 'required',
-        ]);
+        'weaponname' => 'required||max:255',
+        'weapontype' => 'required||max:255',
+        'weaponimg' => 'required',
+        'weaponlore' => 'required',
+    ]);
         //update function based on ID
         $weapon = Weapon::find($id);
         $weapon->weaponname = $request->input('weaponname');

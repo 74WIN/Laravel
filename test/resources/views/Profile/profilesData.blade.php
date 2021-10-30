@@ -30,21 +30,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($weapon as $item)
+                            @foreach ($weapon as $weapon)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->weaponname }}</td>
-                                    <td>{{ $item->weapontype }}</td>
-                                    <td>{{ $item->weaponimg }}</td>
-                                    <td>{{ $item->weaponlore }}</td>
+                                    <td>{{ $weapon->id }}</td>
+                                    <td>{{ $weapon->weaponname }}</td>
+                                    <td>{{ $weapon->weapontype }}</td>
+                                    <td>{{ $weapon->weaponimg }}</td>
+                                    <td>{{ $weapon->weaponlore }}</td>
                                     <td>
                                         <input type="checkbox" checked data-toggle="toggle">
                                     </td>
                                     <td>
-                                        <a href="{{ url('edit-weapons/'.$item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('edit-weapons/'.$weapon->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                     </td>
                                     <td>
-                                        <a href="{{ url('delete-weapons/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{{ url('delete-weapons/'.$weapon->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -56,7 +56,6 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            This is a forum where you can view and rate your favorite vtuber
                         </div>
                     </div>
                 </div>

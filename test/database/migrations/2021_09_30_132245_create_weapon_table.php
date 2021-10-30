@@ -19,11 +19,8 @@ class CreateWeaponTable extends Migration
             $table->foreignId('weapontype_id')->references('id')->on('weapontypes')->onDelete('cascade');
             $table->string('weaponimg')->nullable();
             $table->longText('weaponlore')->nullable();
-            $table->boolean('active');
+            $table->boolean('active')->default(0);
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 
