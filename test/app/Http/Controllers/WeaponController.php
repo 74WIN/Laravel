@@ -20,11 +20,17 @@ class WeaponController extends Controller
         if (auth()->guest()){
             return redirect()->back()->with('status', 'Please log in first');
         }
-        $user = User::find(auth()->id());
-        $weapon = Weapon::find($id);
-        $weapon->user()->attach($user);
-        $weapon->save();
-        return redirect()->back();
+        $user = auth()->id();
+        $favorites = Favorite::where('user_id', '=', $user)->get()->count();
+        if($favorites < 5){
+            $weapon = Weapon::find($id);
+            $weapon->user()->attach($user);
+            $weapon->save();
+            return redirect()->back();
+        }else{
+            return redirect()->back()->with('status', 'You can only have 5 favorites');
+        }
+
     }
     public function unfavorite($id){
 

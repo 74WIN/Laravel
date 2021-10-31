@@ -144,9 +144,9 @@ class MakeWeaponController extends Controller
         }
 
         //shows edit view based on ID
-        $weapons = Weapon::find($id);
+        $weapon = Weapon::find($id);
         $weapontypes = Weapontype::all();
-        return view('Weapon.edit-weapons', ['weapons' => $weapons], ['weapontypes' => $weapontypes]);
+        return view('Weapon.edit-weapons', ['weapon' => $weapon], ['weapontypes' => $weapontypes]);
     }
 
     /**
@@ -168,13 +168,13 @@ class MakeWeaponController extends Controller
         'weaponlore' => 'required',
     ]);
         //update function based on ID
-        $weapons = Weapon::find($id);
-        $weapons->weaponname = $request->input('weaponname');
-        $weapons->weapontype_id = $request->input('weapontype');
-        $weapons->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
-        $weapons->weaponimg = str_replace('weaponImages', '', $weapons->weaponimg);
-        $weapons->weaponlore = $request->input('weaponlore');
-        $weapons->update();
+        $weapon = Weapon::find($id);
+        $weapon->weaponname = $request->input('weaponname');
+        $weapon->weapontype_id = $request->input('weapontype');
+        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
+        $weapon->weaponimg = str_replace('weaponImages', '', $weapon->weaponimg);
+        $weapon->weaponlore = $request->input('weaponlore');
+        $weapon->update();
 
         return redirect()->back()->with('status','Weapon Updated Successfully');
     }

@@ -4,10 +4,11 @@
         <link rel="stylesheet" href="public/css/app.css">
     </head>
     @if (session('status'))
-        <h6 class="alert alert-success">{{ session('status') }}</h6>
+        <h6 class="alert alert-danger">{{ session('status') }}</h6>
     @endif
     <div class="input-group row height d-flex justify-content-center align-items-center">
         <form class="form-outline" method="GET" action="#">
+            @csrf
             <input type="text" name="searchWeapons" id="form1" class="form-control" value="{{ request('searchWeapons') }}"/>
             <select type="text"  name="filter" id="form1" class="form-control">
                 <option value="">Select Weapon Type</option>

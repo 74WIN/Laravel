@@ -12,12 +12,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit & Update Weapon
-                            <a href="{{ url('weaponsData') }}" class="btn btn-danger float-end">BACK</a>
+                            <a href="{{ url('weaponsData') }}" class="btn btn-info float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('update-weapons/'.$weapons->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('update-weapons/'.$weapon->id) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             @if ($errors->any())
@@ -31,7 +31,7 @@
                             @endif
                             <div class="form-group mb-3">
                                 <label for="">weapon name</label>
-                                <input type="text" name="weaponname" value="{{$weapons->weaponname}}" class="form-control">
+                                <input type="text" name="weaponname" value="{{$weapon->weaponname}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">weapon type</label>

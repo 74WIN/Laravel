@@ -15,7 +15,7 @@
                     @auth()
                         @if(auth()->user()->role === 'admin')
 
-                        <a href="{{ url('weaponsData') }}" class="btn btn-danger float-end">Go to Weapon Database</a>
+                        <a href="{{ url('weaponsData') }}" class="btn btn-info float-end">Go to Weapon Database</a>
 
                         @endif
                     @endauth
@@ -34,11 +34,11 @@
                                 </div>
                             @endif
                             <div class="form-group mb-3">
-                                <label for="">Weapon Name</label>
+                                <label for="">Name</label>
                                 <input type="text" name="weaponname" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Weapon type</label>
+                                <label for="">Type</label>
                                 <select type="text" name="weapontype" id="form1" class="form-control">
                                     <option value="">Select Weapon Type</option>
                                     @foreach($weapontypes as $weapontype)
@@ -47,11 +47,11 @@
                                 </select>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Weapon image</label>
+                                <label for="">image</label>
                                 <input type="file" name="weaponimg" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Weapon lore</label>
+                                <label for="">lore</label>
                                 <textarea type="text" name="weaponlore" class="form-control">
                                 </textarea>
                             </div>

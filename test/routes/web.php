@@ -32,21 +32,21 @@ Route::post('update-profile', [App\Http\Controllers\UserController::class, 'prof
 //Route::get('delete-elements/{id}', [App\Http\Controllers\MakeElementController::class, 'destroy']);
 //Route::get('elements', [App\Http\Controllers\MakeElementController::class, 'getElements']);
 
-Route::get('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'create']);
-Route::post('make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'store']);
-Route::get('weaponsData', [App\Http\Controllers\MakeWeaponController::class, 'index'])->middleware('auth');
-Route::patch('weaponsData/{id}', [App\Http\Controllers\WeaponController::class, 'changeWeaponStatus'])->middleware('auth');
-Route::get('edit-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'edit'])->middleware('auth');
-Route::put('update-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'update'])->middleware('auth');
-Route::get('delete-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'destroy'])->middleware('auth');
+Route::get('/make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'create']);
+Route::post('/make-weapons', [App\Http\Controllers\MakeWeaponController::class, 'store']);
+Route::get('/weaponsData', [App\Http\Controllers\MakeWeaponController::class, 'index'])->middleware('auth');
+Route::patch('/weaponsData/{id}', [App\Http\Controllers\WeaponController::class, 'changeWeaponStatus'])->middleware('auth');
+Route::get('/edit-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'edit'])->middleware('auth');
+Route::put('/update-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'update'])->middleware('auth');
+Route::get('/delete-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'destroy'])->middleware('auth');
 //Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'show']);
-Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'getWeapons']);
-Route::get('weaponsDetail/{id}', [App\Http\Controllers\MakeWeaponController::class, 'weaponsDetail']);
+Route::get('/weapons', [App\Http\Controllers\MakeWeaponController::class, 'getWeapons']);
+Route::get('/weaponsDetail/{id}', [App\Http\Controllers\MakeWeaponController::class, 'weaponsDetail']);
 
-Route::post('favorite/{id}', [App\Http\Controllers\WeaponController::class, 'favorite'])->name('favoriteWeapon');
-Route::post('unfavorite/{id}', [App\Http\Controllers\WeaponController::class, 'unfavorite'])->name('unfavoriteWeapon');
+Route::post('/favorite/{id}', [App\Http\Controllers\WeaponController::class, 'favorite'])->name('favoriteWeapon');
+Route::post('/unfavorite/{id}', [App\Http\Controllers\WeaponController::class, 'unfavorite'])->name('unfavoriteWeapon');
 
-Route::get('favorites', [App\Http\Controllers\WeaponController::class, 'myFavorites'])->middleware('auth');
+Route::get('/favorites', [App\Http\Controllers\WeaponController::class, 'myFavorites'])->middleware('auth');
 Auth::routes();
 
 
