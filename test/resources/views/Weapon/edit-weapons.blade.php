@@ -17,9 +17,9 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('update-weapons/'.$weapon->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                        <form action="{{ url('update-weapons/'.$weapons->id) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
+                            @csrf
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -31,7 +31,7 @@
                             @endif
                             <div class="form-group mb-3">
                                 <label for="">weapon name</label>
-                                <input type="text" name="weaponname" value="{{$weapon->weaponname}}" class="form-control">
+                                <input type="text" name="weaponname" value="{{$weapons->weaponname}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">weapon type</label>

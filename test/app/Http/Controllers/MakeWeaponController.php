@@ -17,26 +17,28 @@ class MakeWeaponController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+        //checks if the user role is admin
         if(auth()->user()->role != 'admin'){
             abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
         }
         //search bar function
         $weapontypes = Weapontype::all();
-        $weapon = Weapon::latest();
+        $weapons = Weapon::latest();
         if (request('searchWeapons')){
-            $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
+            $weapons->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
                 ->orWhere('id', 'like', '%' . request('searchWeapons') . '%')
                 ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
 
         }
         //filter function
         if (request('filter')){
-            $weapon->where('weapontype_id', 'like', request('filter'));
+            $weapons->where('weapontype_id', 'like', request('filter'));
         }
         //shows weapons database
-        return view('Weapon.weaponsData', ['weapon' => $weapon->get()], ['weapontypes' => $weapontypes]);
+        return view('Weapon.weaponsData', ['weapons' => $weapons->get()], ['weapontypes' => $weapontypes]);
     }
 
 
@@ -45,20 +47,16 @@ class MakeWeaponController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function create(Request $request)
-    {
+    public function create()
+    {   //find the user based on id and gets the favorites
         $user = auth()->id();
-        $favorites = DB::table('favorites')
-        ->select('user_id')
-            ->where('user_id', '=', $user)
-            ->get();
-        $count = $favorites->count();
+        $favorites = Favorite::where('user_id', '=', $user)->get()->count();
         //if the current user is a guest, then give message 'Please log in first"
         if (auth()->guest()){
             return redirect()->back()->with('status', 'Please log in first');
         }
-//        if user has favorited 3 weapons, then he can make a weapon
-        if($count >= 3){
+        //if user has favorited 3 weapons, then he can make a weapon
+        if($favorites >= 3){
             $weapontypes = Weapontype::all();
             //shows make-weapon view
             return view('Weapon.make-weapons', ['weapontypes' => $weapontypes]);
@@ -84,14 +82,14 @@ class MakeWeaponController extends Controller
 
         ]);
         //stores weapons in database. The weaponImages are stored in a public storage filemap
-        $weapon = new Weapon();
-        $weapon->weaponname = $request->input('weaponname');
-        $weapon->weapontype_id = $request->input('weapontype');
-        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
-        $weapon->weaponimg = str_replace('weaponImages', '', $weapon->weaponimg);
-        $weapon->weaponlore = $request->input('weaponlore');
-        $weapon->active = 1;
-        $weapon->save();
+        $weapons = new Weapon();
+        $weapons->weaponname = $request->input('weaponname');
+        $weapons->weapontype_id = $request->input('weapontype');
+        $weapons->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
+        $weapons->weaponimg = str_replace('weaponImages', '', $weapons->weaponimg);
+        $weapons->weaponlore = $request->input('weaponlore');
+        $weapons->active = 1;
+        $weapons->save();
         return redirect()->back()->with('status','Weapon Added Successfully');
     }
 
@@ -99,21 +97,18 @@ class MakeWeaponController extends Controller
     {
         $weapontypes = Weapontype::all();
         //search bar function
-        $weapon = Weapon::latest();
+        $weapons = Weapon::latest();
         if (request('searchWeapons')){
-            $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
+            $weapons->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weapontype_id', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
-        }else{
-            return redirect()->back()->with('status','No weapon found');
         }
         //filter function
         if (request('filter')){
-            $weapon->where('weapontype_id', 'like',request('filter'));
+            $weapons->where('weapontype_id', 'like',request('filter'));
         }
-
         //shows weapons view
-        return view('Weapon.weapons', ['weapon' => $weapon->get()], ['weapontypes' => $weapontypes]);
+        return view('Weapon.weapons', ['weapons' => $weapons->get()], ['weapontypes' => $weapontypes]);
     }
 
     public function weaponsDetail ($id)
@@ -149,9 +144,9 @@ class MakeWeaponController extends Controller
         }
 
         //shows edit view based on ID
-        $weapon = Weapon::find($id);
+        $weapons = Weapon::find($id);
         $weapontypes = Weapontype::all();
-        return view('Weapon.edit-weapons', ['weapon' => $weapon], ['weapontypes' => $weapontypes]);
+        return view('Weapon.edit-weapons', ['weapons' => $weapons], ['weapontypes' => $weapontypes]);
     }
 
     /**
@@ -173,13 +168,13 @@ class MakeWeaponController extends Controller
         'weaponlore' => 'required',
     ]);
         //update function based on ID
-        $weapon = Weapon::find($id);
-        $weapon->weaponname = $request->input('weaponname');
-        $weapon->weapontype_id = $request->input('weapontype');
-        $weapon->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
-        $weapon->weaponimg = str_replace('weaponImages', '', $weapon->weaponimg);
-        $weapon->weaponlore = $request->input('weaponlore');
-        $weapon->update();
+        $weapons = Weapon::find($id);
+        $weapons->weaponname = $request->input('weaponname');
+        $weapons->weapontype_id = $request->input('weapontype');
+        $weapons->weaponimg = $request->file('weaponimg')->storePublicly('weaponImages','public');
+        $weapons->weaponimg = str_replace('weaponImages', '', $weapons->weaponimg);
+        $weapons->weaponlore = $request->input('weaponlore');
+        $weapons->update();
 
         return redirect()->back()->with('status','Weapon Updated Successfully');
     }
@@ -195,8 +190,8 @@ class MakeWeaponController extends Controller
         abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
     }
     //destroys weapon based on ID
-        $weapon = Weapon::find($id);
-        $weapon->delete();
+        $weapons = Weapon::find($id);
+        $weapons->delete();
         return redirect()->back()->with('status','Weapon Deleted Successfully');
     }
 }

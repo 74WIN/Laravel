@@ -43,7 +43,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($weapon as $weapon)
+                            @foreach ($weapons as $weapon)
                                 <tr>
                                     <td>{{ $weapon->id }}</td>
                                     <td>  <img src="{{ asset("/storage/weaponImages/".$weapon->weaponimg) }}" width="150px" height="75px"></td>

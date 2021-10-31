@@ -9,8 +9,8 @@ class Favorite extends Model
 {
     use HasFactory;
     protected $table = 'favorites';
-    protected $fillable = [
-        'user_id',
-        'weapon_id',
-    ];
+
+    public function users(){
+       return $this -> hasMany(User::class, "weapon_id");
+    }
 }

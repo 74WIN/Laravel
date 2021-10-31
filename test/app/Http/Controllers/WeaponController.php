@@ -35,10 +35,11 @@ class WeaponController extends Controller
         return redirect()->back();
     }
 
-    public function myFavorites($id){
-        $user = User::find(auth()->id());
-        $favorites = Favorite::find($id);
-        return view('Weapon.favorites', ['favorites' => $favorites]);
-    }
+//    public function myFavorites(){
+//        $user = auth()->id();
+//        $favorites = Favorite::find($user);
+//        $favorites = $weapon->
+//        return view('Weapon.favorites', ['favorites' => $favorites]);
+//    }
 
 }

@@ -20,7 +20,7 @@
     </div>
     <div class="container">
     <div class="row">
-        @foreach($weapon as $weapon)
+        @foreach($weapons as $weapon)
             @if($weapon->active === 1)
             <div class="col-lg-4">
                 <div class="image-box">
