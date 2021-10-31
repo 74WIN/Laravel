@@ -18,46 +18,49 @@
             <button type="submit" class="btn btn-primary align-items-center ">Search</button>
         </form>
     </div>
+    <div class="container">
     <div class="row">
         @foreach($weapon as $weapon)
             @if($weapon->active === 1)
-            <div class="card col-lg-4">
+            <div class="col-lg-4">
                 <div class="image-box">
                 <img src="{{ asset("/storage/weaponImages/".$weapon->weaponimg) }}" width="300px" height="150px">
                 </div>
                 <div class="card-body">
                     <p class="card-title">Weapon name: {{ $weapon->weaponname }}</p>
                     <p class="card-title">Weapon type: {{ $weapon->weapontype->name }}</p>
-                    <details class="card-text">
-                        <summary>Weapon Lore</summary>
-                        {{ $weapon->weaponlore }}
-                    </details>
-                </div>
-                    @if($weapon->user()->find(Auth::id()))
-                        <form  id="{{$weapon->id}}" method="post" action="{{route('unfavoriteWeapon', $weapon)}}">
-                            @csrf
-                            <input type="hidden" name="id" value="{{$weapon->id}}">
-                            <button type="submit" class="btn btn-primary btn-lg">Unfavorite</button>
-                        </form>
-                    @endif
-                        @if($weapon->user()->find(Auth::id()) === null)
-                            <form  id="{{$weapon->id}}" method="post" action="{{route('favoriteWeapon',$weapon)}}">
+                    <a href="{{ url('weaponsDetail/'.$weapon->id) }}" class="btn btn-primary btn-sm mb-2">Details</a>
+                @auth()
+                    @if(auth()->user())
+                        @if($weapon->user()->find(auth()->id()) === null)
+                            <form  id="{{$weapon->id}}" method="post" action="{{route('favoriteWeapon',$weapon->id)}}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$weapon->id}}">
-                                <button type="submit" class="btn btn-primary btn-lg">Favorite</button>
+                                <button type="submit" class="btn btn-primary btn-sm mb-2">Favorite</button>
                             </form>
                         @endif
-            </div>
+                        @if($weapon->user()->find(auth()->id()))
+                            <form  id="{{$weapon->id}}" method="post" action="{{route('unfavoriteWeapon', $weapon->id)}}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$weapon->id}}">
+                                <button type="submit" class="btn btn-secondary btn-sm">Unfavorite</button>
+                            </form>
+                        @endif
+                    @endif
+                @endauth
             @endif
+            </div>
+            </div>
         @endforeach
     </div>
-    <nav aria-label="Page navigation example ">
-        <ul class="pagination justify-content-center align ">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    </div>
+{{--    <nav aria-label="Page navigation example ">--}}
+{{--        <ul class="pagination justify-content-center align ">--}}
+{{--            <li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">1</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">Next</a></li>--}}
+{{--        </ul>--}}
+{{--    </nav>--}}
 @endsection

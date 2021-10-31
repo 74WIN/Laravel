@@ -35,15 +35,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//    public function changeStatus(Request $request)
-//    {
-//        $user = User::find($request->user_id);
-//        $user->status = $request->status;
-//        $user->save();
-//
-//        return response()->json(['success'=>'Status change successfully.']);
-//    }
-
     public function edit()
     {
         return view('profile/editProfile');
@@ -57,7 +48,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        $user = Auth::user();
+        $user = User::find(auth()->id());
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->update();

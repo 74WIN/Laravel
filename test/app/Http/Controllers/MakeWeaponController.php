@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Favorite;
 use App\Models\User;
 use App\Models\Weapon;
 use App\Models\Weapontype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
 class MakeWeaponController extends Controller
@@ -38,62 +40,32 @@ class MakeWeaponController extends Controller
     }
 
 
-
-//    public function filter(Request $request){
-//        $weapon = Weapon::where( function($query) use($request){
-//            return $request->weapontype_id?
-//                $query->from('weapontypes')->where('id',$request->weapontype_id) : '';
-//        })
-//            ->with('weapontype')
-//            ->get();
-//
-//        $selected_id = [];
-//        $selected_id['weapontype_id'] = $request->weapontype_id;
-//
-//        return view('Weapon.weapons',compact('weapon','selected_id'));
-//
-//    }
-
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function create(Request $request)
     {
+        $user = auth()->id();
+        $favorites = DB::table('favorites')
+        ->select('user_id')
+            ->where('user_id', '=', $user)
+            ->get();
+        $count = $favorites->count();
         //if the current user is a guest, then give message 'Please log in first"
         if (auth()->guest()){
             return redirect()->back()->with('status', 'Please log in first');
         }
-        $user = Auth::user();
-        $weapon = array($user->weapon);
-        dd($weapon);
 //        if user has favorited 3 weapons, then he can make a weapon
-        if(count(array($weapon)) > 3){
+        if($count >= 3){
             $weapontypes = Weapontype::all();
             //shows make-weapon view
             return view('Weapon.make-weapons', ['weapontypes' => $weapontypes]);
         }else{
-            return redirect()->back()->with('status', 'You need 3 favorite to unlock this feature');
+            return redirect()->back()->with('status', 'You need 3 favorites to unlock this feature');
         }
     }
-
-//    public function search(Request $request)
-//    {
-//        {
-//            $search = $request->input('search');
-//            if (!$search) {
-//                $weapon = Weapon::all()
-//                    ->where('active', '=', 1);
-//            } else {
-//                $weapon = Weapon::where('name','like','%'.$search.'%')
-//                    ->where('active', '=', 1)
-//                    ->orderBy('id')
-//                    ->paginate(6);
-//            }
-//            return view('Weapon.weapons', compact('weapon'));
-//        }
-//    }
 
     /**
      * Store a newly created resource in storage.
@@ -132,14 +104,25 @@ class MakeWeaponController extends Controller
             $weapon->where('weaponname', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weapontype_id', 'like', '%' . request('searchWeapons') . '%')
             ->orWhere('weaponlore', 'like', '%' . request('searchWeapons') . '%');
+        }else{
+            return redirect()->back()->with('status','No weapon found');
         }
         //filter function
-        elseif (request('filter')){
+        if (request('filter')){
             $weapon->where('weapontype_id', 'like',request('filter'));
         }
+
         //shows weapons view
         return view('Weapon.weapons', ['weapon' => $weapon->get()], ['weapontypes' => $weapontypes]);
     }
+
+    public function weaponsDetail ($id)
+    {
+        $weapon = Weapon::find($id);
+        //shows weapons view
+        return view('Weapon.weaponsDetail', ['weapon' => $weapon]);
+    }
+
 
     /**
      * Display the specified resource.
@@ -149,21 +132,7 @@ class MakeWeaponController extends Controller
      */
     public function show(Request $request)
     {
-//        {
-//            $search = $request->input('search');
-//           if (!$search) {
-//               $weapon = Weapon::all()
-//                   ->where('active', '=', 1);
-//          } else {
-//                $weapon = Weapon::where('weaponname','like','%'.$search.'%')
-//                    ->where('active', '=', 1)
-//                 ->orderBy('id')
-//                   ->paginate(6);
-//           }
-//               return view('Weapon.weapons', compact('weapon'));
-//        }
-//       $weapon = Weapon::all();
-//       return view('Weapon.weapons', ['weapons' => $weapon]));
+
     }
 
 

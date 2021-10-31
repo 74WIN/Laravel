@@ -41,11 +41,12 @@ Route::put('update-weapons/{id}', [App\Http\Controllers\MakeWeaponController::cl
 Route::get('delete-weapons/{id}', [App\Http\Controllers\MakeWeaponController::class, 'destroy']);
 //Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'show']);
 Route::get('weapons', [App\Http\Controllers\MakeWeaponController::class, 'getWeapons']);
+Route::get('weaponsDetail/{id}', [App\Http\Controllers\MakeWeaponController::class, 'weaponsDetail']);
 
-Route::post('favorite', [App\Http\Controllers\WeaponController::class, 'favorite'])->name('favoriteWeapon');
-Route::post('unfavorite', [App\Http\Controllers\WeaponController::class, 'unfavorite'])->name('unfavoriteWeapon');
+Route::post('favorite/{id}', [App\Http\Controllers\WeaponController::class, 'favorite'])->name('favoriteWeapon');
+Route::post('unfavorite/{id}', [App\Http\Controllers\WeaponController::class, 'unfavorite'])->name('unfavoriteWeapon');
 
-Route::get('my_favorites', [App\Http\Controllers\UserController::class, 'myFavorites'])->middleware('auth');
+Route::get('myFavorites', [App\Http\Controllers\WeaponController::class, 'myFavorites'])->middleware('auth');
 Auth::routes();
 
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Favorite;
 use App\Models\Weapon;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,24 +15,30 @@ class WeaponController extends Controller
         $weapon->update(['active' => $weapon->active]);
         return redirect()->back()->with('status','Weapon Updated Successfully');
     }
-    public function favorite(Request $request){
+    public function favorite($id){
 
         if (auth()->guest()){
             return redirect()->back()->with('status', 'Please log in first');
         }
         $user = User::find(auth()->id());
-        $weapon = Weapon::find($request->input('id'));
+        $weapon = Weapon::find($id);
         $weapon->user()->attach($user);
         $weapon->save();
         return redirect()->back();
     }
-    public function unfavorite(Request $request){
+    public function unfavorite($id){
 
         $user = User::find(auth()->id());
-        $weapon = Weapon::find($request->input('id'));
+        $weapon = Weapon::find($id);
         $weapon->user()->detach($user);
         $weapon->save();
         return redirect()->back();
+    }
+
+    public function myFavorites($id){
+        $user = User::find(auth()->id());
+        $favorites = Favorite::find($id);
+        return view('Weapon.favorites', ['favorites' => $favorites]);
     }
 
 }

@@ -53,15 +53,14 @@
                                     <form id="{{$weapon->id}}" action="{{url('weaponsData/'. $weapon->id)}}" method="POST">
                                         @method('PATCH')
                                         @csrf
-                                        <td data-id="{{ $weapon->id }}">
+                                        <td>
                                             <input type="checkbox"
                                                    id="active-{{$weapon->id}}"
-                                                   name="active" class="js-switch"
+                                                   name="active" class="switch"
                                                    onchange="this.form.submit()"
                                                 {{ $weapon->active === 1 ? 'checked' : '' }}>
                                         </td>
                                     </form>
-
                                     <td>
                                         <a href="{{ url('edit-weapons/'.$weapon->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                     </td>
@@ -81,7 +80,7 @@
 @endsection
 @section('footer')
     <script>
-        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.switch'));
 
         elems.forEach(function(html) {
             let switchery = new Switchery(html,  { size: 'small' });

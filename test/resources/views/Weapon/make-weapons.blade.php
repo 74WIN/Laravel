@@ -10,14 +10,17 @@
                 @endif
 
                 <div class="card">
-                    <h4>Add Weapon</h4>
+                    <div class="card-header">
+                        <h4>Add Weapon
                     @auth()
                         @if(auth()->user()->role === 'admin')
-                    <div class="card-header">
+
                         <a href="{{ url('weaponsData') }}" class="btn btn-danger float-end">Go to Weapon Database</a>
-                    </div>
+
                         @endif
                     @endauth
+                        </h4>
+                    </div>
                     <div class="card-body">
                         <form action="{{ url('make-weapons') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -49,7 +52,8 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Weapon lore</label>
-                                <input type="text" name="weaponlore" class="form-control">
+                                <textarea type="text" name="weaponlore" class="form-control">
+                                </textarea>
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Save Weapon</button>

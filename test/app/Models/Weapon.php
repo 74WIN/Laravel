@@ -26,13 +26,13 @@ class Weapon extends Model
         return $this->BelongsToMany(User::class, 'favorites');
     }
 
-    public function scopeFilter($query)
-    {
-        if (request('search'))
-        {
-            $query
-                ->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('body', 'like', '%' . request('search') . '%');
-        }
-    }
+//    public function scopeFilter($query)
+//    {
+//        if (request('search'))
+//        {
+//            $query
+//                ->where('title', 'like', '%' . request('search') . '%')
+//                ->orWhere('body', 'like', '%' . request('search') . '%');
+//        }
+//    }
 }

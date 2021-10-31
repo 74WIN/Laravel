@@ -44,11 +44,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/weapons">Weapons</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/elements">Elements</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/make-weapons">Make your weapon</a>
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="/elements">Elements</a>--}}
+{{--                        </li>--}}
+                        <li class="nav-item"  >
+                            <a class="nav-link"  href="/make-weapons">Make your weapon</a>
                         </li>
                         @auth()
                         @if(auth()->user()->role === 'admin')
@@ -83,6 +83,9 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('edit-profile') }}">
                                         {{ __('Profile') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('myFavorites') }}">
+                                        {{ __('Favorites') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
